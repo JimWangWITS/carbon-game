@@ -1,0 +1,3111 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="theme-color" content="#1e293b">
+    
+    <!-- SEO Meta Tags -->
+    <title>低碳霸主：怪獸保衛戰 - 回合制碳費策略遊戲</title>
+    <meta name="description" content="在未來城市中經營企業，與 NPC 競爭版圖，管理碳費與排放，對抗排放怪獸。回合制策略遊戲，體驗碳費制度帶來的經營挑戰。">
+    <meta name="keywords" content="碳費, 策略遊戲, 回合制遊戲, 環保遊戲, 企業經營, 碳排放, 低碳, 網頁遊戲">
+    <meta name="author" content="低碳霸主遊戲團隊">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="zh-TW">
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://your-domain.com/">
+    <meta property="og:title" content="低碳霸主：怪獸保衛戰 - 回合制碳費策略遊戲">
+    <meta property="og:description" content="在未來城市中經營企業，與 NPC 競爭版圖，管理碳費與排放，對抗排放怪獸。回合制策略遊戲，體驗碳費制度帶來的經營挑戰。">
+    <meta property="og:image" content="https://your-domain.com/og-image.png">
+    <meta property="og:locale" content="zh_TW">
+    <meta property="og:site_name" content="低碳霸主：怪獸保衛戰">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:url" content="https://your-domain.com/">
+    <meta name="twitter:title" content="低碳霸主：怪獸保衛戰 - 回合制碳費策略遊戲">
+    <meta name="twitter:description" content="在未來城市中經營企業，與 NPC 競爭版圖，管理碳費與排放，對抗排放怪獸。回合制策略遊戲，體驗碳費制度帶來的經營挑戰。">
+    <meta name="twitter:image" content="https://your-domain.com/og-image.png">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="manifest" href="site.webmanifest">
+    
+    <!-- Google Analytics (可選) - 取消註解並替換 YOUR_GA_ID 以啟用 -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA_ID"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'YOUR_GA_ID');
+    </script>
+    -->
+    
+    <!-- 開發模式開關 (設定為 false 可關閉詳細日誌) -->
+    <script>
+        window.DEBUG_MODE = false; // 設為 true 可啟用詳細的 console 日誌
+    </script>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Noto+Sans+TC:wght@400;700&display=swap"
+        rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+    <style>
+        body {
+            font-family: 'Noto Sans TC', sans-serif;
+            /* 行動裝置優化 */
+            -webkit-tap-highlight-color: transparent;
+            -webkit-touch-callout: none;
+            touch-action: manipulation;
+            user-select: none;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+        }
+        
+        /* 允許文字選擇的區域 */
+        .selectable, input, textarea {
+            user-select: text;
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+        }
+
+        .font-cartoon {
+            font-family: 'Fredoka', sans-serif;
+        }
+
+        /* 動畫定義 */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-5px) rotate(-5deg);
+            }
+
+            75% {
+                transform: translateX(5px) rotate(5deg);
+            }
+        }
+
+        @keyframes screen-shake {
+            0%, 100% {
+                transform: translateX(0) translateY(0);
+            }
+            10% {
+                transform: translateX(-1px) translateY(-1px);
+            }
+            20% {
+                transform: translateX(1px) translateY(1px);
+            }
+            30% {
+                transform: translateX(-1px) translateY(1px);
+            }
+            40% {
+                transform: translateX(1px) translateY(-1px);
+            }
+            50% {
+                transform: translateX(-1px) translateY(0);
+            }
+            60% {
+                transform: translateX(1px) translateY(0);
+            }
+            70% {
+                transform: translateX(0) translateY(-1px);
+            }
+            80% {
+                transform: translateX(0) translateY(1px);
+            }
+            90% {
+                transform: translateX(0) translateY(0);
+            }
+        }
+
+        @keyframes breathe {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.05);
+                opacity: 1;
+            }
+        }
+
+        @keyframes pop {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 1;
+            }
+        }
+
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .animate-shake {
+            animation: shake 0.5s ease-in-out infinite;
+        }
+
+        .animate-breathe {
+            animation: breathe 3s infinite;
+        }
+
+        .animate-pop {
+            animation: pop 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+        }
+
+        /* 遊戲特定樣式 */
+        .monster-shadow {
+            transition: all 1s ease;
+            filter: drop-shadow(0 0 20px rgba(0, 0, 0, 0.5));
+        }
+
+        /* 滾動數字樣式 */
+        .counter {
+            font-variant-numeric: tabular-nums;
+        }
+
+        /* 自定義滾動條 */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #1e293b;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #475569;
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b;
+        }
+
+        /* 地塊固定為正方形 */
+        #game-grid>div {
+            width: 6rem;
+            height: 6rem;
+        }
+
+        /* ===== 3D 城市視覺系統 ===== */
+        
+        /* 等距視角容器 */
+        .city-3d-container {
+            perspective: 2000px;
+            perspective-origin: 50% 40%;
+            transform-style: preserve-3d;
+        }
+
+        /* 城市網格 - 分區式設計 */
+        #game-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 6px;
+            padding: 20px;
+            width: fit-content;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* 區域分隔線 */
+        .zone-divider-vertical {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(to bottom, transparent, rgba(100, 100, 100, 0.5), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .zone-divider-horizontal {
+            position: absolute;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(to right, transparent, rgba(100, 100, 100, 0.5), transparent);
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        /* 區域標籤 */
+        .zone-label {
+            position: absolute;
+            background: transparent;
+            border: none;
+            border-radius: 4px;
+            padding: 2px 6px;
+            font-size: 10px;
+            font-weight: bold;
+            color: #94a3b8;
+            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.8);
+            z-index: 2;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+
+        /* 區域背景（輕微） */
+        .zone-bg {
+            position: absolute;
+            inset: 0;
+            border-radius: 8px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .zone-bg-player {
+            background: rgba(59, 130, 246, 0.05);
+            border: 1px dashed rgba(59, 130, 246, 0.2);
+        }
+
+        .zone-bg-npc-a {
+            background: rgba(244, 63, 94, 0.05);
+            border: 1px dashed rgba(244, 63, 94, 0.2);
+        }
+
+        .zone-bg-npc-b {
+            background: rgba(14, 165, 233, 0.05);
+            border: 1px dashed rgba(14, 165, 233, 0.2);
+        }
+
+        .zone-bg-npc-c {
+            background: rgba(245, 158, 11, 0.05);
+            border: 1px dashed rgba(245, 158, 11, 0.2);
+        }
+
+        /* 地塊 - 簡潔的 2D 設計 */
+        .tile-3d-base {
+            width: 96px;
+            height: 96px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        /* 地塊頂面 - 簡潔設計 */
+        .tile-top {
+            position: absolute;
+            width: 96px;
+            height: 96px;
+            background: #1a202c;
+            border: 2px solid #374151;
+            border-radius: 12px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+
+        /* 煙霧效果（高排放建築） */
+        .smoke-effect {
+            position: absolute;
+            top: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 25px;
+            height: 40px;
+            background: radial-gradient(circle, rgba(100,100,100,0.7), transparent);
+            border-radius: 50%;
+            animation: smoke-rise 3s infinite;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @keyframes smoke-rise {
+            0% {
+                transform: translateX(-50%) translateY(0) scale(0.8);
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(-50%) translateY(-50px) scale(1.8);
+                opacity: 0;
+            }
+        }
+
+        /* 怪獸動態接近系統 */
+        .monster-approach-container {
+            position: fixed;
+            right: 0;
+            bottom: 0;
+            transform-style: preserve-3d;
+            transition: all 2s cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* 怪獸階段樣式 */
+        .monster-stage-1 {
+            transform: translateX(600px) translateZ(-1500px) scale(0.2);
+            opacity: 0.1;
+        }
+
+        .monster-stage-2 {
+            transform: translateX(400px) translateZ(-800px) scale(0.4);
+            opacity: 0.3;
+        }
+
+        .monster-stage-3 {
+            transform: translateX(200px) translateZ(-300px) scale(0.7);
+            opacity: 0.6;
+        }
+
+        .monster-stage-4 {
+            transform: translateX(50px) translateZ(-100px) scale(1.1);
+            opacity: 0.85;
+        }
+
+        .monster-stage-5 {
+            transform: translateX(0px) translateZ(0px) scale(1.5);
+            opacity: 1;
+        }
+
+        /* 怪獸 3D 視覺 */
+        .monster-3d {
+            position: relative;
+            width: 200px;
+            height: 200px;
+            transform-style: preserve-3d;
+            animation: monster-breathe 2s ease-in-out infinite;
+        }
+
+        @keyframes monster-breathe {
+            0%, 100% {
+                transform: scale(1) translateY(0);
+            }
+            50% {
+                transform: scale(1.1) translateY(-10px);
+            }
+        }
+
+        .monster-body-3d {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, #881337, #1f2937);
+            border-radius: 50%;
+            box-shadow: 
+                0 0 30px rgba(220, 38, 38, 0.8),
+                inset 0 0 20px rgba(0,0,0,0.5);
+        }
+
+        .monster-eye-3d {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: #ff0000;
+            border-radius: 50%;
+            box-shadow: 0 0 15px #ff0000;
+            animation: eye-glow 1s ease-in-out infinite;
+        }
+
+        @keyframes eye-glow {
+            0%, 100% {
+                opacity: 1;
+                box-shadow: 0 0 15px #ff0000;
+            }
+            50% {
+                opacity: 0.7;
+                box-shadow: 0 0 25px #ff0000;
+            }
+        }
+
+        /* 屏幕邊緣警告光效 */
+        .monster-warning-edge {
+            position: fixed;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            width: 0;
+            background: linear-gradient(to left, rgba(220, 38, 38, 0), rgba(220, 38, 38, 0.6));
+            pointer-events: none;
+            z-index: 40;
+            transition: width 1s ease-out;
+        }
+
+        .monster-warning-edge.active {
+            width: 150px;
+            animation: warning-pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes warning-pulse {
+            0%, 100% {
+                opacity: 0.6;
+            }
+            50% {
+                opacity: 0.9;
+            }
+        }
+
+        /* 地塊懸停效果 - 簡潔 */
+        .tile-3d-base:hover {
+            transform: scale(1.05);
+        }
+
+        .tile-3d-base:hover .tile-top {
+            border-color: #3b82f6;
+        }
+
+        /* ===== 響應式設計 ===== */
+        
+        /* 抽屜動畫 */
+        .drawer {
+            transition: transform 0.3s ease-in-out;
+        }
+
+        /* 手機端：抽屜默認隱藏 */
+        @media (max-width: 768px) {
+            .drawer-hidden {
+                transform: translateX(-100%);
+            }
+
+            .drawer-right-hidden {
+                transform: translateX(100%);
+            }
+        }
+
+        /* 桌面端：抽屜始終顯示（不使用 transform） */
+        @media (min-width: 768px) {
+            .drawer-hidden,
+            .drawer-right-hidden {
+                transform: none;
+            }
+        }
+
+        /* 遮罩層 */
+        .drawer-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.5);
+            z-index: 40;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .drawer-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* 手機端地塊縮小，但保持 5 列布局 */
+        @media (max-width: 768px) {
+            .tile-3d-base {
+                width: 50px;
+                height: 50px;
+            }
+
+            .tile-top {
+                width: 50px;
+                height: 50px;
+            }
+
+            #game-grid {
+                grid-template-columns: repeat(5, 1fr) !important;
+                grid-template-rows: repeat(4, 1fr) !important;
+                gap: 4px;
+                padding: 10px;
+            }
+
+            /* 手機端隱藏區域標記（因為空間較小） */
+            .zone-label,
+            .zone-divider-vertical,
+            .zone-divider-horizontal,
+            .zone-bg {
+                display: none;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tile-3d-base {
+                width: 40px;
+                height: 40px;
+            }
+
+            .tile-top {
+                width: 40px;
+                height: 40px;
+            }
+
+            #game-grid {
+                grid-template-columns: repeat(5, 1fr) !important;
+                grid-template-rows: repeat(4, 1fr) !important;
+                gap: 3px;
+                padding: 8px;
+            }
+        }
+    </style>
+</head>
+
+<body class="bg-slate-900 text-slate-100 h-screen w-screen overflow-hidden flex flex-col select-none">
+
+    <!-- GAME HEADER -->
+    <header
+        class="h-16 md:h-16 sm:h-auto bg-slate-800 border-b-4 border-slate-700 flex flex-col md:flex-row items-center justify-between px-3 md:px-6 py-2 md:py-0 shrink-0 z-30 shadow-lg">
+        <!-- 左側：年份與回合 + 手機端選單按鈕 -->
+        <div class="flex items-center gap-2 md:gap-4 w-full md:w-auto justify-between md:justify-start">
+            <!-- 手機端：抽屜按鈕 -->
+            <button onclick="toggleLeftDrawer()" class="md:hidden px-2 py-1 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg border border-slate-600 transition" title="開啟狀態面板">
+                📊
+            </button>
+            
+            <div class="flex items-center gap-2 md:gap-4">
+                <div
+                    class="bg-blue-600 text-white px-2 md:px-3 py-1 rounded-lg font-bold shadow-blue-500/50 shadow-lg transform -skew-x-12 border-2 border-blue-400">
+                    <span class="not-italic text-sm md:text-lg" id="header-year">2030 年</span>
+            </div>
+                <div class="text-slate-400 text-xs md:text-sm font-bold bg-slate-900 px-2 md:px-3 py-1 rounded-full border border-slate-600"
+                id="header-turn">
+                第 1 / 10 回合
+            </div>
+                <!-- 桌面端：功能按鈕 -->
+                <div class="hidden md:flex items-center gap-2">
+                    <button onclick="openSaveLoadModal()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg border border-slate-600 transition" title="保存/載入遊戲">
+                        💾
+                    </button>
+                    <button onclick="openAchievementModal()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg border border-slate-600 transition relative" title="成就">
+                        🏆
+                        <span id="achievement-badge" class="absolute -top-1 -right-1 bg-rose-500 text-white text-[10px] rounded-full w-4 h-4 flex items-center justify-center hidden"></span>
+                    </button>
+                    <button onclick="toggleDataPanel()" class="px-3 py-1 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg border border-slate-600 transition" title="數據面板">
+                        📊
+                    </button>
+                </div>
+        </div>
+
+            <!-- 手機端：右側抽屜按鈕 -->
+            <button onclick="toggleRightDrawer()" class="md:hidden px-2 py-1 bg-slate-700 hover:bg-slate-600 text-white text-sm rounded-lg border border-slate-600 transition" title="開啟對手面板">
+                👥
+            </button>
+            </div>
+
+        <!-- 中間：怪獸怒氣值 (污染度) - 桌面端完整版 -->
+        <div class="hidden md:flex flex-col items-center flex-1 mx-2 relative" style="min-width: 500px; max-width: 800px;">
+            <div class="flex items-center gap-2 mb-1 w-full justify-center relative group cursor-help">
+                <span class="text-xs font-bold text-rose-400 animate-pulse uppercase tracking-wider whitespace-nowrap">⚠️ 怪獸怒氣值 (污染度)</span>
+                <!-- Tooltip - 只在標題上顯示 -->
+                <div
+                    class="absolute top-6 left-1/2 transform -translate-x-1/2 bg-black/90 text-xs p-2 rounded text-slate-300 opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 w-64 text-center border border-slate-600 shadow-xl">
+                    當怒氣值滿 100%，怪獸會衝進城市，遊戲直接結束！<br>
+                    <span class="text-yellow-400">70% 時怪獸會狂暴 (污染加倍)</span>
+                </div>
+            </div>
+            <!-- 進度條容器 -->
+            <div class="w-full relative">
+                <!-- 刻度標籤（在進度條上方） -->
+                <div class="relative w-full mb-1" style="height: 16px;">
+                    <div class="absolute left-[70%] transform -translate-x-1/2 text-[10px] text-yellow-400 font-bold whitespace-nowrap">
+                        70% 警告
+                    </div>
+                    <div class="absolute left-[90%] transform -translate-x-1/2 text-[10px] text-red-400 font-bold whitespace-nowrap">
+                        90% 危險
+                    </div>
+                </div>
+                <!-- 進度條背景 -->
+                <div
+                    class="w-full h-6 bg-slate-900 rounded-full border-2 border-slate-600 relative overflow-visible shadow-inner">
+                    <!-- 危險刻度線 -->
+                    <div class="absolute left-[70%] top-0 bottom-0 w-0.5 bg-yellow-500 z-10 opacity-70"></div>
+                    <div class="absolute left-[90%] top-0 bottom-0 w-0.5 bg-red-600 z-10 opacity-70"></div>
+
+                <!-- 進度條 -->
+                <div id="monster-bar"
+                        class="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-rose-600 transition-all duration-1000 ease-out relative rounded-full"
+                    style="width: 20%">
+                    <div class="absolute right-0 top-0 bottom-0 w-1 bg-white/50 animate-pulse"></div>
+                    <!-- 粒子效果 (CSS 模擬) -->
+                    <div
+                            class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNCIgaGVpZ2h0PSI0IiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPjxjaXJjbGUgY3g9IjIiIGN5PSIyIiByPSIxIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMikiLz48L3N2Zz4=')] opacity-30 rounded-full">
+                    </div>
+                </div>
+            </div>
+            </div>
+            <!-- 減碳投資按鈕 -->
+            <button id="carbon-investment-btn" onclick="investInCarbonReduction()"
+                class="mt-2 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed relative z-10"
+                title="投資減碳技術，降低怪獸怒氣值">
+                🌱 減碳投資 ($15,000)
+            </button>
+        </div>
+
+        <!-- 手機端：怪獸怒氣值簡化版 -->
+        <div class="md:hidden w-full px-2 mt-2">
+            <div class="flex items-center justify-between mb-1">
+                <span class="text-[10px] font-bold text-rose-400">⚠️ 怪獸怒氣</span>
+                <span id="monster-anger-mobile" class="text-xs font-bold text-rose-400">20%</span>
+            </div>
+            <div class="w-full h-4 bg-slate-900 rounded-full border border-slate-600 relative overflow-hidden">
+                <div id="monster-bar-mobile"
+                    class="h-full bg-gradient-to-r from-emerald-500 via-yellow-400 to-rose-600 transition-all duration-1000 ease-out rounded-full"
+                    style="width: 20%">
+                </div>
+            </div>
+            <button id="carbon-investment-btn-mobile" onclick="investInCarbonReduction()"
+                class="mt-1 w-full px-2 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-[10px] font-bold rounded transition disabled:opacity-50 disabled:cursor-not-allowed">
+                🌱 減碳 ($15k)
+            </button>
+        </div>
+
+        <!-- 右側：碳價行情 - 桌面端 -->
+        <div class="hidden md:flex gap-4">
+            <div class="bg-slate-900 px-4 py-1.5 rounded-lg border border-slate-600 flex flex-col items-end">
+                <span class="text-[10px] text-slate-400">國內碳費</span>
+                <span class="font-mono font-bold text-emerald-400">$<span id="domestic-price">300</span></span>
+            </div>
+            <div class="bg-slate-900 px-4 py-1.5 rounded-lg border border-slate-600 flex flex-col items-end">
+                <span class="text-[10px] text-slate-400">國際碳權</span>
+                <span class="font-mono font-bold text-blue-400">$<span id="intl-price">800</span></span>
+            </div>
+        </div>
+    </header>
+
+    <!-- 抽屜遮罩層 -->
+    <div id="drawer-overlay" class="drawer-overlay" onclick="closeAllDrawers()"></div>
+
+    <div class="flex-1 flex overflow-hidden relative">
+
+        <!-- 左側面板：玩家狀態 - 響應式抽屜 -->
+        <aside id="left-drawer" class="w-72 md:w-72 sm:w-80 bg-slate-800 border-r border-slate-700 flex flex-col z-50 md:z-20 shadow-2xl fixed md:relative inset-y-0 left-0 drawer drawer-hidden">
+            <!-- 玩家頭像區 -->
+            <div class="p-6 bg-gradient-to-b from-slate-800 to-slate-900 border-b border-slate-700 text-center relative">
+                <!-- 手機端：關閉按鈕 -->
+                <button onclick="closeAllDrawers()" class="md:hidden absolute top-2 right-2 text-slate-400 hover:text-white text-xl">✕</button>
+                <div
+                    id="player-avatar-container"
+                    onclick="openAvatarModal()"
+                    class="w-20 h-20 mx-auto bg-indigo-500 rounded-full border-4 border-slate-600 shadow-lg mb-3 overflow-hidden relative group cursor-pointer">
+                    <img id="player-avatar-img"
+                        src="https://api.dicebear.com/7.x/avataaars/svg?seed=Player1&backgroundColor=b6e3f4"
+                        alt="Player Avatar" class="w-full h-full object-cover">
+                    <div
+                        class="absolute inset-0 bg-black/30 flex items-center justify-center opacity-0 group-hover:opacity-100 transition text-xs font-bold">
+                        更換</div>
+                </div>
+                <h2 class="text-xl font-bold text-white font-cartoon tracking-wide">未來 CEO</h2>
+                <div
+                    class="inline-block bg-indigo-900 text-indigo-200 text-xs px-2 py-0.5 rounded mt-1 border border-indigo-700">
+                    等級 1 新手老闆</div>
+            </div>
+
+            <!-- 資金與資源 -->
+            <div class="p-4 space-y-6 flex-1 overflow-y-auto">
+                <!-- 錢包 -->
+                <div class="bg-slate-900/50 p-4 rounded-xl border-l-4 border-yellow-500 shadow-md">
+                    <div class="text-xs text-slate-400 uppercase tracking-wider mb-1">公司資金 (Capital)</div>
+                    <div class="text-3xl font-mono font-bold text-yellow-400 text-shadow-sm animate-pulse-on-change"
+                        id="player-money">$ 50,000</div>
+                </div>
+
+                <!-- 排放計量表 -->
+                <div
+                    class="bg-slate-900/50 p-4 rounded-xl border-l-4 border-rose-500 shadow-md relative overflow-hidden">
+                    <div class="flex justify-between items-center mb-2">
+                        <div class="text-xs text-slate-400 uppercase tracking-wider">預估排放量</div>
+                        <span
+                            class="bg-rose-900/50 text-rose-300 text-[10px] px-2 py-0.5 rounded border border-rose-800"
+                            id="emission-status">安全</span>
+                    </div>
+                    <div class="flex items-end gap-1">
+                        <span class="text-2xl font-mono font-bold text-white" id="current-emission">8,000</span>
+                        <span class="text-xs text-slate-500 mb-1">噸/年</span>
+                    </div>
+
+                    <!-- 紅綠燈視覺化 -->
+                    <div class="mt-3 flex gap-1 h-2 bg-slate-800 rounded-full overflow-hidden">
+                        <div class="flex-1 bg-emerald-500 opacity-100" title="免稅區"></div>
+                        <div class="flex-1 bg-yellow-500 opacity-30" title="收費區"></div>
+                        <div class="flex-1 bg-red-600 opacity-30" title="危險區"></div>
+                    </div>
+                    <div class="mt-1 flex justify-between text-[10px] text-slate-500 font-mono" id="emission-scale">
+                        <span>0</span>
+                        <span id="free-emission-display">10k (免稅額)</span>
+                        <span id="red-zone-display">25k</span>
+                    </div>
+                </div>
+
+                <!-- 碳權背包 -->
+                <div class="space-y-2">
+                    <h3 class="text-xs text-slate-400 font-bold ml-1">📦 倉庫存貨</h3>
+                    <div class="grid grid-cols-2 gap-2">
+                        <div class="bg-slate-700/50 p-2 rounded border border-slate-600 flex flex-col items-center">
+                            <span class="text-2xl mb-1">🎫</span>
+                            <span class="text-[10px] text-slate-400">國內許可證</span>
+                            <span class="font-bold text-emerald-400" id="local-credits">0</span>
+                        </div>
+                        <div class="bg-slate-700/50 p-2 rounded border border-slate-600 flex flex-col items-center">
+                            <span class="text-2xl mb-1">🌍</span>
+                            <span class="text-[10px] text-slate-400">國際碳權</span>
+                            <span class="font-bold text-blue-400" id="intl-credits">0</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 機器人助手 -->
+            <div class="p-4 bg-slate-900 border-t border-slate-700 flex items-start gap-3 relative">
+                <div
+                    class="w-12 h-12 bg-blue-500 rounded-full flex items-center justify-center shrink-0 border-2 border-white shadow-lg animate-float z-10">
+                    🤖
+                </div>
+                <div
+                    class="bg-white text-slate-800 p-3 rounded-lg rounded-tl-none text-xs shadow-lg relative bubble-triangle">
+                    <p id="robot-msg">嗨！老闆！我是艾依。<br>現在我們在安全區，不需要付碳費喔！蓋工廠要小心怪獸生氣！</p>
+                </div>
+            </div>
+        </aside>
+
+        <!-- 主地圖區 -->
+        <main
+            class="flex-1 bg-gradient-to-b from-slate-900 via-slate-800 to-slate-900 relative overflow-auto flex items-center justify-center city-3d-container">
+            
+            <!-- 天空背景（根據怪獸怒氣值變色） -->
+            <div id="sky-background" class="absolute inset-0 transition-all duration-2000 pointer-events-none z-0">
+                <div class="absolute inset-0 bg-gradient-to-b from-blue-900/20 via-slate-900 to-slate-800"></div>
+                    </div>
+
+            <!-- 屏幕邊緣警告光效 -->
+            <div id="monster-warning-edge" class="monster-warning-edge"></div>
+
+            <!-- 怪獸動態接近系統 -->
+            <div id="monster-approach-container" class="monster-approach-container monster-stage-1">
+                <div class="monster-3d">
+                    <div class="monster-body-3d" id="monster-body-3d">
+                        <!-- 怪獸眼睛 -->
+                        <div class="monster-eye-3d" style="top: 40px; left: 40px;"></div>
+                        <div class="monster-eye-3d" style="top: 50px; right: 40px;"></div>
+                        <!-- 怪獸嘴巴 -->
+                        <div style="position: absolute; bottom: 30px; left: 50%; transform: translateX(-50%); width: 60px; height: 30px; border: 3px solid #1f2937; border-top: none; border-radius: 0 0 30px 30px;"></div>
+                    </div>
+                    <!-- 怪獸光效 -->
+                    <div id="monster-glow-3d" class="absolute inset-0 bg-red-600 rounded-full blur-[100px] opacity-30" style="width: 200px; height: 200px; top: -25px; left: -25px;"></div>
+                </div>
+            </div>
+
+            <!-- 城市網格：3D 等距視角 -->
+            <div id="game-grid" class="relative z-10">
+                <!-- 由 JS 動態生成地塊 -->
+            </div>
+
+            <!-- 裝飾性背景網格 -->
+            <div
+                class="absolute inset-0 pointer-events-none bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_40%,transparent_100%)]">
+            </div>
+        </main>
+
+        <!-- 右側面板：競爭對手與新聞 - 響應式抽屜 -->
+        <aside id="right-drawer" class="w-64 md:w-64 sm:w-80 bg-slate-800 border-l border-slate-700 flex flex-col z-50 md:z-20 shadow-2xl fixed md:relative inset-y-0 right-0 drawer drawer-right-hidden">
+            <div class="p-4 bg-slate-900/80 border-b border-slate-700 flex items-center justify-between">
+                <div>
+                <h3 class="text-xs text-slate-500 uppercase font-bold tracking-widest mb-1">COMPETITORS</h3>
+                <p class="text-[10px] text-slate-400">你的競爭對手狀況</p>
+                </div>
+                <!-- 手機端：關閉按鈕 -->
+                <button onclick="closeAllDrawers()" class="md:hidden text-slate-400 hover:text-white text-xl">✕</button>
+            </div>
+
+            <div class="p-3 space-y-3 overflow-y-auto flex-1">
+                <!-- NPC A: 激進派 -->
+                <div
+                    class="bg-slate-700 rounded-lg p-3 border-2 border-rose-500/40 hover:border-rose-400 transition group relative">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex gap-2">
+                            <div
+                                class="w-8 h-8 rounded bg-rose-500 flex items-center justify-center text-lg shadow-lg border-2 border-white">
+                                😡</div>
+                            <div>
+                                <div class="text-sm font-bold text-white">暴發戶阿金</div>
+                                <div class="text-[10px] text-rose-300" id="npcA-emission-label">高排放危險群</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-emerald-400" id="npcA-rank">#1</span>
+                    </div>
+                    <!-- 資金和碳排放資訊 -->
+                    <div class="grid grid-cols-2 gap-2 mb-2 text-[10px]">
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">資金</div>
+                            <div class="font-mono font-bold text-yellow-400" id="npcA-money">$50,000</div>
+                        </div>
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">碳排放</div>
+                            <div class="font-mono font-bold text-rose-400" id="npcA-emission">0 噸</div>
+                        </div>
+                    </div>
+                    <div class="h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="w-[80%] h-full bg-rose-500" id="npcA-bar"></div>
+                    </div>
+                    <!-- 氣泡對話 -->
+                    <div
+                        class="absolute -left-32 top-0 bg-white text-black text-[10px] p-2 rounded rounded-r-none shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 w-28">
+                        "碳費算什麼？我有的是錢！全部蓋燃煤廠！"
+                    </div>
+                </div>
+
+                <!-- NPC B: 技術派 -->
+                <div
+                    class="bg-slate-700 rounded-lg p-3 border-2 border-sky-500/30 hover:border-sky-400 transition group relative">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex gap-2">
+                            <div
+                                class="w-8 h-8 rounded bg-sky-500 flex items-center justify-center text-lg shadow-lg border-2 border-white">
+                                🤓</div>
+                            <div>
+                                <div class="text-sm font-bold text-white">博士</div>
+                                <div class="text-[10px] text-sky-300" id="npcB-emission-label">科技減碳中...</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400" id="npcB-rank">#3</span>
+                    </div>
+                    <!-- 資金和碳排放資訊 -->
+                    <div class="grid grid-cols-2 gap-2 mb-2 text-[10px]">
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">資金</div>
+                            <div class="font-mono font-bold text-yellow-400" id="npcB-money">$45,000</div>
+                        </div>
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">碳排放</div>
+                            <div class="font-mono font-bold text-rose-400" id="npcB-emission">0 噸</div>
+                        </div>
+                    </div>
+                    <div class="h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="w-[30%] h-full bg-sky-500" id="npcB-bar"></div>
+                    </div>
+                    <div
+                        class="absolute -left-32 top-0 bg-white text-black text-[10px] p-2 rounded rounded-r-none shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 w-28">
+                        "根據計算，升級綠能才是最佳解..."
+                    </div>
+                </div>
+
+                <!-- NPC C: 成本派 -->
+                <div
+                    class="bg-slate-700 rounded-lg p-3 border-2 border-amber-500/30 hover:border-amber-400 transition group relative">
+                    <div class="flex justify-between items-start mb-2">
+                        <div class="flex gap-2">
+                            <div
+                                class="w-8 h-8 rounded bg-amber-500 flex items-center justify-center text-lg shadow-lg border-2 border-white">
+                                😏</div>
+                            <div>
+                                <div class="text-sm font-bold text-white">成本魔人小李</div>
+                                <div class="text-[10px] text-amber-200" id="npcC-emission-label">精打細算型</div>
+                            </div>
+                        </div>
+                        <span class="text-xs font-mono text-slate-400" id="npcC-rank">#2</span>
+                    </div>
+                    <!-- 資金和碳排放資訊 -->
+                    <div class="grid grid-cols-2 gap-2 mb-2 text-[10px]">
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">資金</div>
+                            <div class="font-mono font-bold text-yellow-400" id="npcC-money">$47,000</div>
+                        </div>
+                        <div class="bg-slate-800/50 px-2 py-1 rounded">
+                            <div class="text-slate-400">碳排放</div>
+                            <div class="font-mono font-bold text-rose-400" id="npcC-emission">0 噸</div>
+                        </div>
+                    </div>
+                    <div class="h-1.5 bg-slate-900 rounded-full overflow-hidden">
+                        <div class="w-[50%] h-full bg-amber-400" id="npcC-bar"></div>
+                    </div>
+                    <div
+                        class="absolute -left-32 top-0 bg-white text-black text-[10px] p-2 rounded rounded-r-none shadow-lg opacity-0 group-hover:opacity-100 transition pointer-events-none z-50 w-28">
+                        "賺錢可以，但碳費要壓到最低。"
+                    </div>
+                </div>
+            </div>
+
+            <!-- 新聞快訊 -->
+            <div class="h-1/3 border-t border-slate-700 bg-slate-900 p-4">
+                <h3 class="text-xs text-blue-400 font-bold mb-2 flex items-center gap-1">
+                    <span class="animate-pulse">🔴</span> 新聞快報 (News)
+                </h3>
+                <div class="text-[11px] text-slate-300 space-y-2 font-mono" id="news-feed">
+                    <p class="border-l-2 border-blue-500 pl-2">遊戲開始：2030 年，四家企業準備開戰！</p>
+                </div>
+            </div>
+        </aside>
+    </div>
+
+    <!-- FOOTER: 行動區 - 響應式 -->
+    <footer class="h-20 md:h-20 sm:h-auto sm:py-2 bg-slate-900 border-t border-slate-700 flex items-center justify-center gap-3 md:gap-6 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] overflow-x-auto">
+        <button onclick="openShop('domestic')" class="group relative px-3 md:px-6 py-1.5 md:py-2 bg-slate-800 hover:bg-emerald-900/30 text-emerald-400 rounded-xl border border-emerald-800 hover:border-emerald-500 transition-all transform hover:-translate-y-1 shrink-0">
+            <div class="text-xs md:text-sm font-bold">🛒 國內交易</div>
+            <div class="text-[9px] md:text-[10px] opacity-70 hidden sm:block">買賣許可證</div>
+        </button>
+
+        <button onclick="openShop('intl')" class="group relative px-3 md:px-6 py-1.5 md:py-2 bg-slate-800 hover:bg-blue-900/30 text-blue-400 rounded-xl border border-blue-800 hover:border-blue-500 transition-all transform hover:-translate-y-1 shrink-0">
+            <div class="text-xs md:text-sm font-bold">✈️ 國際市場</div>
+            <div class="text-[9px] md:text-[10px] opacity-70 hidden sm:block">購買高級碳權</div>
+        </button>
+        <div class="w-px h-10 bg-slate-700 hidden md:block"></div>
+
+        <button id="end-turn-btn" onclick="endTurn()" class="px-4 md:px-8 py-2 md:py-3 bg-gradient-to-r from-indigo-600 to-violet-600 hover:from-indigo-500 hover:to-violet-500 text-white font-bold rounded-xl shadow-lg shadow-indigo-500/30 transform transition active:scale-95 flex items-center gap-2 md:gap-3 border border-indigo-400 shrink-0">
+            <span class="text-xs md:text-base">📅 結束這一年</span>
+            <span class="bg-black/20 px-1.5 md:px-2 py-0.5 rounded text-[10px] md:text-xs hidden sm:inline">計算營收</span>
+        </button>
+    </footer>
+
+                    <!-- MODAL: 建造工廠 (簡化版) -->
+                    <div id="build-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div
+                            class="bg-slate-800 w-[450px] rounded-2xl shadow-2xl border-2 border-slate-600 overflow-hidden">
+                            <div
+                                class="bg-slate-900 px-6 py-4 flex justify-between items-center border-b border-slate-700">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2" id="modal-title">
+                                    🏗️ 選擇建造項目
+                                </h2>
+                                <button onclick="closeModal('build-modal')"
+                                    class="text-slate-400 hover:text-white text-xl">✕</button>
+                            </div>
+
+                            <div class="p-6 grid grid-cols-2 gap-4" id="build-options">
+                                <!-- 選項會由 JS 動態生成 -->
+                            </div>
+
+                            <!-- 風險評估預覽區 -->
+                            <div class="bg-slate-900/50 p-4 mx-6 mb-6 rounded-xl border border-dashed border-slate-600">
+                                <h3 class="text-xs text-slate-400 font-bold mb-2 uppercase">🤖 艾依的風險評估</h3>
+                                <div class="flex items-center gap-3">
+                                    <div class="w-10 h-10 rounded-full bg-slate-700 flex items-center justify-center text-xl"
+                                        id="risk-icon">❔</div>
+                                    <div class="text-sm">
+                                        <div id="risk-text" class="text-slate-300">請選擇一個工廠來查看分析...</div>
+                                        <div id="risk-profit" class="font-mono font-bold mt-1 text-white"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- MODAL: 年度頒獎典禮 (結算) -->
+                    <div id="report-modal"
+                        class="fixed inset-0 bg-black/90 z-[60] hidden flex items-center justify-center">
+                        <div
+                            class="w-[500px] bg-white text-slate-900 rounded-2xl shadow-2xl overflow-hidden relative text-center animate-pop">
+                            <!-- 綵帶背景 -->
+                            <div
+                                class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/confetti.png')] opacity-10">
+                            </div>
+
+                            <div class="p-8">
+                                <h2 class="text-3xl font-black text-indigo-900 mb-1 font-cartoon">🏆 年度頒獎典禮 🏆</h2>
+                                <p class="text-slate-500 font-bold mb-6" id="report-year-label">2030 年結算報告</p>
+
+                                <!-- 關鍵數據卡片 -->
+                                <div class="grid grid-cols-2 gap-4 mb-6">
+                                    <div class="bg-emerald-100 p-4 rounded-xl border-2 border-emerald-200">
+                                        <div class="text-xs text-emerald-600 font-bold uppercase">本年淨賺 (Profit)</div>
+                                        <div class="text-2xl font-black text-emerald-600 font-mono mt-1"
+                                            id="report-income">+
+                                            $35,000
+                                        </div>
+                                    </div>
+                                    <div class="bg-rose-100 p-4 rounded-xl border-2 border-rose-200">
+                                        <div class="text-xs text-rose-600 font-bold uppercase">支付碳費 (Tax)</div>
+                                        <div class="text-2xl font-black text-rose-600 font-mono mt-1" id="report-tax">-
+                                            $5,000</div>
+                                    </div>
+                                </div>
+
+                                <!-- 排名與比較 -->
+                                <div class="bg-slate-100 rounded-xl p-4 mb-6">
+                                    <div class="flex justify-between items-center border-b border-slate-200 pb-2 mb-2">
+                                        <span class="text-sm font-bold text-slate-600">目前排名</span>
+                                        <span class="text-xl font-black text-indigo-600" id="report-rank">第 2 名</span>
+                                    </div>
+                                    <div class="text-xs text-slate-500 text-left space-y-1" id="report-rank-detail">
+                                        <p>👑 第一名：暴發戶阿金 ($80,000)</p>
+                                        <p>☠️ 污染王：暴發戶阿金 (怪獸很生氣！)</p>
+                                    </div>
+                                </div>
+
+                                <button onclick="startNextTurn()"
+                                    class="w-full py-4 bg-indigo-600 hover:bg-indigo-500 text-white font-bold text-lg rounded-xl shadow-lg transition transform hover:scale-105">
+                                    繼續下一回合 ➜
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 建築管理 Modal -->
+                    <div id="building-management-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div
+                            class="bg-slate-800 w-[450px] rounded-2xl shadow-2xl border-2 border-slate-600 overflow-hidden">
+                            <div
+                                class="bg-slate-900 px-6 py-4 flex justify-between items-center border-b border-slate-700">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">
+                                    <span id="bm-building-emoji">🏭</span>
+                                    <span id="bm-building-name">建築管理</span>
+                                </h2>
+                                <button onclick="closeBuildingManagementModal()"
+                                    class="text-slate-400 hover:text-white text-xl">✕</button>
+                            </div>
+
+                            <div class="p-6 space-y-4">
+                                <!-- 建築資訊 -->
+                                <div class="bg-slate-900/50 p-4 rounded-xl">
+                                    <div class="grid grid-cols-2 gap-4 text-sm">
+                                        <div>
+                                            <div class="text-slate-400 text-xs mb-1">等級</div>
+                                            <div class="font-bold text-white" id="bm-building-level">一般</div>
+                                        </div>
+                                        <div>
+                                            <div class="text-slate-400 text-xs mb-1">年收入</div>
+                                            <div class="font-bold text-emerald-400" id="bm-building-income">$0</div>
+                                        </div>
+                                        <div class="col-span-2">
+                                            <div class="text-slate-400 text-xs mb-1">年排放量</div>
+                                            <div class="font-bold text-rose-400" id="bm-building-emission">0 噸</div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- 升級選項 -->
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-400 mb-2">升級選項</h3>
+                                    <div id="bm-upgrade-options" class="flex gap-2 flex-wrap">
+                                        <!-- 動態生成 -->
+                                    </div>
+                                </div>
+
+                                <!-- 出售按鈕 -->
+                                <button id="bm-sell-btn"
+                                    class="w-full bg-rose-600 hover:bg-rose-500 text-white py-3 rounded-lg font-bold">
+                                    出售建築
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 交易商店 Modal -->
+                    <div id="shop-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[400px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2" id="shop-title">🛒 商店
+                                </h2>
+                                <button onclick="closeModal('shop-modal')"
+                                    class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+
+                            <div class="bg-slate-900 p-4 rounded-xl mb-4 text-center">
+                                <div class="text-xs text-slate-400">目前價格</div>
+                                <div class="text-3xl font-mono font-bold text-yellow-400" id="shop-price">$ 300</div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3" id="shop-actions">
+                                <!-- JS Inject -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 保存/載入 Modal -->
+                    <div id="save-load-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[500px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6 max-h-[80vh] overflow-y-auto">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">💾 保存/載入遊戲</h2>
+                                <button onclick="closeModal('save-load-modal')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-300 mb-2">存檔槽位</h3>
+                                    <div id="save-slots" class="space-y-2">
+                                        <!-- 動態生成存檔槽位 -->
+                                    </div>
+                                </div>
+                                <div class="border-t border-slate-600 pt-4">
+                                    <button onclick="autoSaveGame()" class="w-full bg-blue-600 hover:bg-blue-500 text-white py-2 rounded-lg font-bold">
+                                        自動保存（槽位 1）
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 成就 Modal -->
+                    <div id="achievement-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[600px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6 max-h-[80vh] overflow-y-auto">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">🏆 成就系統</h2>
+                                <button onclick="closeModal('achievement-modal')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div id="achievement-progress" class="bg-slate-900 p-4 rounded-lg mb-4">
+                                <!-- 進度統計 -->
+                            </div>
+                            <div id="achievement-list" class="space-y-2">
+                                <!-- 動態生成成就列表 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 地塊購買 Modal -->
+                    <div id="land-purchase-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[450px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">🏞️ 購買地塊</h2>
+                                <button onclick="closeModal('land-purchase-modal')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div id="land-purchase-content">
+                                <!-- 動態生成 -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 數據面板 Modal -->
+                    <div id="data-panel-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[700px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6 max-h-[80vh] overflow-y-auto">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">📊 數據面板</h2>
+                                <button onclick="closeModal('data-panel-modal')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div class="space-y-4">
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-300 mb-2">碳費計算詳情</h3>
+                                    <div id="carbon-fee-breakdown" class="bg-slate-900 p-4 rounded-lg">
+                                        <!-- 動態生成 -->
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="text-sm font-bold text-slate-300 mb-2">排放來源追溯</h3>
+                                    <div id="emission-source-trace" class="bg-slate-900 p-4 rounded-lg">
+                                        <!-- 動態生成 -->
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 頭像更換 Modal -->
+                    <div id="avatar-modal"
+                        class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[500px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-xl font-bold text-white flex items-center gap-2">🖼️ 更換頭像</h2>
+                                <button onclick="closeModal('avatar-modal')" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div class="space-y-4">
+                                <p class="text-slate-300 text-sm">選擇一個頭像樣式：</p>
+                                <div id="avatar-options" class="grid grid-cols-4 gap-4">
+                                    <!-- 動態生成頭像選項 -->
+                                </div>
+                                <div class="mt-4 pt-4 border-t border-slate-700">
+                                    <p class="text-slate-400 text-xs mb-2">或輸入自訂名稱：</p>
+                                    <div class="flex gap-2">
+                                        <input type="text" id="custom-avatar-seed" placeholder="輸入名稱..." 
+                                            class="flex-1 bg-slate-900 border border-slate-600 rounded-lg px-3 py-2 text-white text-sm focus:outline-none focus:border-blue-500">
+                                        <button onclick="applyCustomAvatar()" 
+                                            class="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg font-bold transition">
+                                            套用
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 遊戲結束 Modal -->
+                    <div id="game-over-modal"
+                        class="fixed inset-0 bg-black/90 z-[70] hidden flex items-center justify-center animate-pop">
+                        <div class="bg-slate-800 w-[700px] rounded-2xl shadow-2xl border-2 border-slate-600 p-6 max-h-[80vh] overflow-y-auto">
+                            <div class="flex justify-between items-center mb-6">
+                                <h2 class="text-2xl font-bold text-white flex items-center gap-2" id="game-over-title">🎮 遊戲結束</h2>
+                                <button onclick="closeGameOverModal()" class="text-slate-400 hover:text-white">✕</button>
+                            </div>
+                            <div id="game-over-content">
+                                <!-- 動態生成 -->
+                            </div>
+                            <div class="mt-6 flex gap-3">
+                                <button onclick="restartGame()" class="flex-1 bg-blue-600 hover:bg-blue-500 text-white py-3 rounded-lg font-bold">
+                                    重新開始
+                                </button>
+                                <button onclick="closeGameOverModal()" class="flex-1 bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-lg font-bold">
+                                    關閉
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <script type="module">
+                        // --- 導入模組 ---
+                        import { GAME_CONFIG, BUILDINGS, OWNER_CONFIG, FACTORY_LEVELS } from './js/core/GameConfig.js';
+                        import { gameState } from './js/core/GameState.js';
+                        import { CarbonFeeSystem } from './js/systems/CarbonFeeSystem.js';
+                        import { LandSystem } from './js/systems/LandSystem.js';
+                        import { BuildingSystem } from './js/systems/BuildingSystem.js';
+                        import { TurnSystem } from './js/systems/TurnSystem.js';
+                        import { NPCAISystem } from './js/systems/NPCAISystem.js';
+                        import { SaveSystem } from './js/systems/SaveSystem.js';
+                        import { AchievementSystem } from './js/systems/AchievementSystem.js';
+                        import { DataPanel } from './js/ui/DataPanel.js';
+                        import { TutorialSystem } from './js/ui/TutorialSystem.js';
+                        import { VictorySystem } from './js/systems/VictorySystem.js';
+
+                        // --- 初始化系統 ---
+                        const landSystem = new LandSystem();
+                        const carbonFeeSystem = new CarbonFeeSystem(gameState, landSystem);
+                        const buildingSystem = new BuildingSystem(gameState, carbonFeeSystem);
+                        const turnSystem = new TurnSystem(gameState, carbonFeeSystem);
+                        const saveSystem = new SaveSystem();
+                        const achievementSystem = new AchievementSystem();
+                        const dataPanel = new DataPanel();
+                        const tutorialSystem = new TutorialSystem();
+                        const victorySystem = new VictorySystem();
+                        let npcAISystem = null; // 在初始化後創建
+
+        let selectedTileIndex = null;
+        let isSettlementPending = false;
+
+        function setEndTurnButtonDisabled(disabled) {
+            const btn = document.getElementById('end-turn-btn');
+            if (!btn) return;
+            btn.disabled = disabled;
+            if (disabled) {
+                btn.classList.add('opacity-60', 'cursor-not-allowed');
+            } else {
+                btn.classList.remove('opacity-60', 'cursor-not-allowed');
+            }
+        }
+
+        // --- 建造限制輔助函數 ---
+        function getMaxBuildsPerTurn() {
+            return GAME_CONFIG?.maxBuildingsPerTurn ?? Infinity;
+        }
+
+        function getCurrentBuildCount() {
+            return gameState.buildingsBuiltThisTurn ?? 0;
+        }
+
+        function canPlayerBuild() {
+            return getCurrentBuildCount() < getMaxBuildsPerTurn();
+        }
+
+        function incrementPlayerBuildCount() {
+            gameState.buildingsBuiltThisTurn = getCurrentBuildCount() + 1;
+        }
+
+                        // --- 初始化 ---
+                        document.addEventListener('DOMContentLoaded', () => {
+                            // 初始化土地系統
+                            landSystem.initializeLands(20, ['P', 'A', 'B', 'C']);
+
+                            // 初始化 NPC AI 系統
+                            npcAISystem = new NPCAISystem(gameState, carbonFeeSystem, landSystem);
+
+                            // 監聽狀態變更事件
+                            setupEventListeners();
+
+                            // 初始化頭像
+                            initAvatar();
+
+                            initGrid();
+                            updateUI();
+                            updateMonsterVisuals(); // 初始化怪獸視覺
+
+                            // 預設給玩家一個燃煤廠（不計入建造限制，因為是初始建築）
+                            addBuildingToTile(0, 'coal', 'P', 'Lv1');
+                            // 注意：初始建築不計入 buildingsBuiltThisTurn
+
+                            // 檢查成就
+                            checkAchievements();
+
+                            // 嘗試載入自動存檔
+                            if (saveSystem.hasAutoSave()) {
+                                if (confirm('發現自動存檔，是否載入？')) {
+                                    loadGame(0);
+                                } else {
+                                    // 沒有載入存檔，檢查是否需要顯示教學
+                                    setTimeout(() => {
+                                        if (!tutorialSystem.completed) {
+                                            if (confirm('歡迎！這是您第一次遊玩嗎？是否要開始新手教學？')) {
+                                                tutorialSystem.start();
+                                            }
+                                        }
+                                    }, 1000);
+                                }
+                            } else {
+                                // 沒有存檔，檢查是否需要顯示教學
+                                setTimeout(() => {
+                                    if (!tutorialSystem.completed) {
+                                        if (confirm('歡迎！這是您第一次遊玩嗎？是否要開始新手教學？')) {
+                                            tutorialSystem.start();
+                                        }
+                                    }
+                                }, 1000);
+                            }
+                        });
+
+                        // 設置事件監聽器
+                        function setupEventListeners() {
+                            gameState.on('money.changed', () => updateUI());
+                            gameState.on('emission.changed', () => {
+                                updateUI();
+                                updateMonsterVisuals();
+                            });
+                            gameState.on('monster.changed', () => {
+                                updateUI();
+                                updateMonsterVisuals();
+                            });
+                            gameState.on('monster.maxed', () => {
+                                alert("怪獸摧毀了城市！遊戲失敗！");
+                                location.reload();
+                            });
+                            gameState.on('turn.changed', () => {
+                                updateUI();
+                            });
+                        }
+
+                        function onTileClick(index) {
+                            // 看這一格上有沒有建築
+                            const building = gameState.getBuildingAtTile(index);
+
+                            // 沒有建築 → 檢查是否可以購買或建造
+                            if (!building) {
+                                const land = landSystem.getLand(index);
+                                if (!land) {
+                                    showToast('無效的地塊！');
+                                    return;
+                                }
+
+                                if (land.owner === 'P') {
+                                    // 玩家自己的地塊，可以建造
+                                    openBuildModal(index);
+                                } else {
+                                    // 其他玩家的地塊，可以購買（如果符合條件）
+                                    const checkResult = landSystem.canPurchase(index, 'P', (tileIndex) => {
+                                        return gameState.getBuildingAtTile(tileIndex) !== undefined;
+                                    });
+                                    
+                                    if (checkResult.canPurchase) {
+                                        openLandPurchaseModal(index);
+                                    } else {
+                                        showToast(checkResult.reason || '無法購買此地塊');
+                                    }
+                                }
+                                return;
+                            }
+
+                            // 有建築，但不是玩家的 → 不能動，只給提示
+                            if (building.owner && building.owner !== 'P') {
+                                const ownerLabel = OWNER_CONFIG[building.owner]?.label || '其他公司';
+                                const buildingInfo = buildingSystem.getBuildingInfo(index);
+                                if (buildingInfo) {
+                                    showToast(
+                                        `「${ownerLabel}」的工廠：${buildingInfo.name} (${buildingInfo.levelName})\n` +
+                                        `排放：${buildingInfo.emission.toLocaleString()} 噸/年`
+                                    );
+                                } else {
+                                    showToast(`這塊地是「${ownerLabel}」的工廠，不能賣喔！`);
+                                }
+                                return;
+                            }
+
+                            // 有建築且是玩家自己的 → 打開建築管理選單
+                            openBuildingManagementModal(index);
+                        }
+
+                        // 生成地圖：分區式設計
+                        function initGrid() {
+                            const grid = document.getElementById('game-grid');
+                            grid.innerHTML = '';
+
+                            // 使用 LandSystem 獲取所有地塊
+                            const lands = landSystem.getAllLands();
+                            
+                            // 計算網格尺寸（用於定位區域標記）
+                            // 注意：這些值應與 CSS 中的 tile-3d-base 尺寸保持一致
+                            const cols = 5; // 5列：4個企業各一列 + 1列混合
+                            const rows = 4; // 4行
+                            const tileWidth = 96; // 對應 .tile-3d-base 的 width
+                            const tileHeight = 96; // 對應 .tile-3d-base 的 height
+                            const gap = 6; // 對應 #game-grid 的 gap
+                            const gridPadding = 20; // 對應 #game-grid 的 padding
+
+                            // 創建區域背景和標籤（前4列：每個企業各一列）
+                            const zoneConfigs = [
+                                { key: 'P', name: '玩家區域', bgClass: 'zone-bg-player', col: 0 },
+                                { key: 'A', name: 'NPC A 區域', bgClass: 'zone-bg-npc-a', col: 1 },
+                                { key: 'B', name: 'NPC B 區域', bgClass: 'zone-bg-npc-b', col: 2 },
+                                { key: 'C', name: 'NPC C 區域', bgClass: 'zone-bg-npc-c', col: 3 }
+                            ];
+
+                            // 為每個區域添加背景（前4列）
+                            zoneConfigs.forEach(zone => {
+                                const zoneBg = document.createElement('div');
+                                zoneBg.className = `zone-bg ${zone.bgClass}`;
+                                const left = gridPadding + zone.col * (tileWidth + gap);
+                                const top = gridPadding;
+                                const width = tileWidth + gap * 2;
+                                const height = rows * (tileHeight + gap) - gap;
+                                zoneBg.style.cssText = `left: ${left}px; top: ${top}px; width: ${width}px; height: ${height}px;`;
+                                grid.appendChild(zoneBg);
+
+                                // 添加區域標籤（在區域頂部中央）
+                                const zoneLabel = document.createElement('div');
+                                zoneLabel.className = 'zone-label';
+                                zoneLabel.textContent = zone.name;
+                                zoneLabel.style.cssText = `left: ${left + width / 2}px; top: ${top - 12}px; transform: translateX(-50%);`;
+                                grid.appendChild(zoneLabel);
+                            });
+
+                            // 為第5列（混合區域）添加標籤
+                            const mixedZoneCol = 4;
+                            const mixedZoneLabel = document.createElement('div');
+                            mixedZoneLabel.className = 'zone-label';
+                            mixedZoneLabel.textContent = '混合區域';
+                            mixedZoneLabel.style.cssText = `left: ${gridPadding + mixedZoneCol * (tileWidth + gap) + tileWidth / 2}px; top: ${gridPadding - 12}px; transform: translateX(-50%);`;
+                            grid.appendChild(mixedZoneLabel);
+
+                            // 添加垂直分隔線（在所有列之間）
+                            for (let i = 1; i < cols; i++) {
+                                const divider = document.createElement('div');
+                                divider.className = 'zone-divider-vertical';
+                                const left = gridPadding + i * (tileWidth + gap) - gap / 2;
+                                divider.style.cssText = `left: ${left}px;`;
+                                grid.appendChild(divider);
+                            }
+
+                            // 添加水平分隔線（在行之間）
+                            for (let i = 1; i < rows; i++) {
+                                const divider = document.createElement('div');
+                                divider.className = 'zone-divider-horizontal';
+                                const top = gridPadding + i * (tileHeight + gap) - gap / 2;
+                                divider.style.cssText = `top: ${top}px;`;
+                                grid.appendChild(divider);
+                            }
+
+                            // 生成地塊
+                            lands.forEach(land => {
+                                const visualInfo = landSystem.getLandVisualInfo(land.index);
+                                const owner = OWNER_CONFIG[land.owner];
+                                const clickable = land.owner === 'P';
+
+                                // 創建地塊容器
+                                const tile = document.createElement('div');
+                                tile.dataset.index = land.index;
+                                tile.dataset.owner = land.owner;
+                                tile.dataset.zone = land.zone || land.owner;
+                                tile.className = `tile-3d-base ${clickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-90'}`;
+
+                                // 簡潔的 2D 地塊結構
+                                const borderColor = visualInfo.borderClass.includes('yellow') ? '#facc15' : 
+                                                   visualInfo.borderClass.includes('rose') ? '#f43f5e' : 
+                                                   visualInfo.borderClass.includes('sky') ? '#0ea5e9' : 
+                                                   visualInfo.borderClass.includes('amber') ? '#f59e0b' : '#64748b';
+                                
+                                tile.innerHTML = `
+                                    <div class="tile-top ${visualInfo.bgClass} border-2 flex items-center justify-center" style="border-color: ${borderColor};">
+                                        <div class="absolute top-1 left-1 text-[9px] px-1.5 py-0.5 rounded-full text-black ${visualInfo.ownerBadge} font-bold z-10">
+                        ${owner.badgeText}
+                    </div>
+                                        <div class="text-2xl" title="${visualInfo.tooltip}">
+                        ${visualInfo.emoji}
+                    </div>
+                                        ${land.owner === 'P' ? '<span class="absolute bottom-1 right-1 text-[10px] text-emerald-400 font-bold">+</span>' : ''}
+                                    </div>
+                `;
+
+                                if (clickable) {
+                                    tile.onclick = () => onTileClick(land.index);
+                                } else {
+                                    tile.onclick = () => showToast(`${owner.tooltip}，你不能在這裡蓋工廠！`);
+                                }
+
+                                grid.appendChild(tile);
+                            });
+                        }
+
+                        // --- 核心邏輯 ---
+
+                        /**
+                         * 生成簡潔的 2D 建築 HTML
+                         */
+                        function generateBuilding3D(buildingType, ownerKey, level) {
+                            const b = BUILDINGS[buildingType];
+                            if (!b) return '';
+                            
+                            const owner = OWNER_CONFIG[ownerKey];
+                            const levelBadge = level !== 'Lv1' ? `<div class="absolute top-1 right-1 text-[8px] bg-blue-600 text-white px-1 rounded z-20 font-bold">${level}</div>` : '';
+                            
+                            return `
+                                <div class="flex flex-col items-center justify-center h-full relative">
+                                    <div class="text-3xl animate-pop">${b.emoji}</div>
+                                    <div class="text-[10px] font-bold text-slate-300 mt-1">${b.name}</div>
+                                    ${b.type === 'high_pollute' ? '<div class="absolute bottom-1 right-1 text-[8px] text-rose-400 animate-pulse">☁️</div>' : ''}
+                                    ${levelBadge}
+                                </div>
+                            `;
+                        }
+
+                        function addBuildingToTile(index, typeId, ownerKey = 'P', level = 'Lv1') {
+                            const grid = document.getElementById('game-grid');
+                            // 使用 dataset.index 查找地塊，而不是依賴 children 順序
+                            const tile = Array.from(grid.children).find(t => t.dataset.index == index);
+                            if (!tile) {
+                                // 開發模式才顯示詳細錯誤
+                                if (window.DEBUG_MODE) console.warn('無法找到地塊:', index);
+                                return;
+                            }
+                            
+                            const b = BUILDINGS[typeId];
+                            if (!b) {
+                                // 開發模式才顯示詳細錯誤
+                                if (window.DEBUG_MODE) console.warn('無效的建築類型:', typeId);
+                                return;
+                            }
+
+                            // 使用 GameState 添加建築
+                            gameState.addBuilding({
+                                type: typeId,
+                                tileIndex: index,
+                                owner: ownerKey,
+                                level: level
+                            });
+
+                            // 使用 updateTileVisual 來更新視覺，確保一致性
+                            updateTileVisual(index);
+                        }
+
+                        function recalcStats() {
+                            // 使用 CarbonFeeSystem 計算實際排放量
+                            const totalEmission = carbonFeeSystem.calculateTotalEmission('P');
+                            gameState.setEmission(totalEmission);
+
+                            // 計算收入
+                            let totalIncome = 0;
+                            gameState.getPlayerBuildings().forEach(b => {
+                                const data = BUILDINGS[b.type];
+                                if (data) {
+                                    totalIncome += data.income;
+                                }
+                            });
+
+                            gameState.projectedIncome = totalIncome;
+                        }
+
+                        // 打開建築管理模態框（升級/出售）
+                        function openBuildingManagementModal(index) {
+                            // 開發模式才顯示詳細日誌
+                            if (window.DEBUG_MODE) {
+                                console.log('openBuildingManagementModal called with index:', index);
+                            }
+                            const buildingInfo = buildingSystem.getBuildingInfo(index);
+                            if (window.DEBUG_MODE) {
+                                console.log('buildingInfo:', buildingInfo);
+                            }
+
+                            if (!buildingInfo) {
+                                showToast('無法獲取建築資訊');
+                                return;
+                            }
+
+                            if (buildingInfo.owner !== 'P') {
+                                showToast('這不是你的建築！');
+                                return;
+                            }
+
+                            selectedTileIndex = index;
+                            const modal = document.getElementById('building-management-modal');
+                            if (window.DEBUG_MODE) {
+                                console.log('modal element:', modal);
+                            }
+
+                            if (!modal) {
+                                showToast('錯誤：找不到建築管理模態框！');
+                                if (window.DEBUG_MODE) {
+                                    console.error('building-management-modal not found!');
+                                }
+                                return;
+                            }
+
+                            // 更新模態框內容
+                            document.getElementById('bm-building-name').innerText = buildingInfo.name;
+                            document.getElementById('bm-building-emoji').innerText = buildingInfo.emoji;
+                            document.getElementById('bm-building-level').innerText = buildingInfo.levelName;
+                            document.getElementById('bm-building-income').innerText = `$${buildingInfo.income.toLocaleString()}/年`;
+                            document.getElementById('bm-building-emission').innerText = `${buildingInfo.emission.toLocaleString()} 噸/年`;
+
+                            // 升級選項
+                            const upgradeContainer = document.getElementById('bm-upgrade-options');
+                            upgradeContainer.innerHTML = '';
+
+                            if (buildingInfo.canUpgrade && buildingInfo.upgradeOptions.length > 0) {
+                                buildingInfo.upgradeOptions.forEach(option => {
+                                    const btn = document.createElement('button');
+                                    btn.className = 'bg-blue-600 hover:bg-blue-500 text-white px-4 py-2 rounded-lg text-sm font-bold';
+                                    btn.innerHTML = `
+                        <div>升級到 ${option.name}</div>
+                        <div class="text-xs opacity-80">$${option.cost.toLocaleString()}</div>
+                    `;
+                                    btn.onclick = () => upgradeBuilding(index, option.level);
+                                    upgradeContainer.appendChild(btn);
+                                });
+                            } else {
+                                upgradeContainer.innerHTML = '<p class="text-slate-400 text-sm">無法升級</p>';
+                            }
+
+                            // 出售按鈕
+                            const sellBtn = document.getElementById('bm-sell-btn');
+                            const refund = buildingSystem.calculateRefund(index);
+                            sellBtn.innerHTML = `
+                <div>出售建築</div>
+                <div class="text-xs opacity-80">回收 $${refund.toLocaleString()}</div>
+            `;
+                            sellBtn.onclick = () => {
+                                const buildingData = BUILDINGS[buildingInfo.type];
+                                const isHighPollute = buildingData && buildingData.type === 'high_pollute';
+                                const confirmMsg = isHighPollute 
+                                    ? `確定要出售「${buildingInfo.name}」嗎？\n可回收：$${refund.toLocaleString()}\n\n⚠️ 這是高排放建築，拆除後可以降低怪獸怒氣值！`
+                                    : `確定要出售「${buildingInfo.name}」嗎？\n可回收：$${refund.toLocaleString()}`;
+                                
+                                if (confirm(confirmMsg)) {
+                                    const result = buildingSystem.sellBuilding(index, 'P');
+                                    if (result.success) {
+                                        showToast(result.message);
+                                        closeBuildingManagementModal();
+                                        // 更新地塊視覺
+                                        updateTileVisual(index);
+                                        recalcStats();
+                                        // 更新怪獸視覺（如果降低了怒氣值）
+                                        if (result.monsterReduction > 0) {
+                                            updateMonsterVisuals();
+                                            updateUI();
+                                        }
+                                    } else {
+                                        showToast(result.message);
+                                    }
+                                }
+                            };
+
+                            modal.classList.remove('hidden');
+                            // 開發模式才顯示詳細日誌
+                            if (window.DEBUG_MODE) {
+                                console.log('Modal should be visible now');
+                            }
+
+                            // 確保模態框顯示在最上層
+                            modal.style.zIndex = '60';
+                        }
+
+                        function closeBuildingManagementModal() {
+                            const modal = document.getElementById('building-management-modal');
+                            if (modal) {
+                                modal.classList.add('hidden');
+                            }
+                        }
+
+                        function upgradeBuilding(index, targetLevel) {
+                            const result = buildingSystem.upgradeBuilding(index, 'P', targetLevel);
+                            if (result.success) {
+                                showToast(result.message);
+                                closeBuildingManagementModal();
+                                // 更新地塊視覺
+                                updateTileVisual(index);
+                                recalcStats();
+                                
+                                // 檢查教學進度
+                                tutorialSystem.checkAction('wait_upgrade');
+                            } else {
+                                showToast(result.message);
+                            }
+                        }
+
+                        function updateTileVisual(index) {
+                            const tile = document.querySelector(`#game-grid > div[data-index="${index}"]`);
+                            if (!tile) return;
+
+                            const building = gameState.getBuildingAtTile(index);
+                            if (building) {
+                                // 有建築，更新為 3D 視覺
+                                const buildingData = BUILDINGS[building.type];
+                                const owner = OWNER_CONFIG[building.owner];
+                                const land = landSystem.getLand(index);
+                                const landVisual = landSystem.getLandVisualInfo(index);
+
+                                let bgClass = landVisual.bgClass;
+                                if (buildingData.type === 'clean') {
+                                    bgClass = 'bg-emerald-900/50';
+                                } else if (buildingData.type === 'high_pollute') {
+                                    bgClass = 'bg-rose-900/50';
+                                }
+
+                                const ownerBorderColor = owner.color.includes('yellow') ? '#facc15' : 
+                                                        owner.color.includes('rose') ? '#f43f5e' : 
+                                                        owner.color.includes('sky') ? '#0ea5e9' : 
+                                                        owner.color.includes('amber') ? '#f59e0b' : '#64748b';
+
+                                // 確保地塊結構正確
+                                if (!tile.classList.contains('tile-3d-base')) {
+                                    tile.className = `tile-3d-base ${building.owner === 'P' ? 'cursor-pointer' : 'cursor-default'}`;
+                                }
+
+                                // 更新地塊
+                                let tileTop = tile.querySelector('.tile-top');
+                                if (!tileTop) {
+                                    // 如果沒有頂面，重新創建整個結構
+                                    tile.innerHTML = `<div class="tile-top ${bgClass} border-2 flex flex-col items-center justify-center"></div>`;
+                                    tileTop = tile.querySelector('.tile-top');
+                                }
+
+                                tileTop.className = `tile-top ${bgClass} border-2 flex flex-col items-center justify-center`;
+                                tileTop.style.borderColor = ownerBorderColor;
+                                tileTop.innerHTML = `
+                                    <div class="absolute top-1 left-1 text-[9px] px-1.5 py-0.5 rounded-full text-black ${owner.badgeBg} font-bold z-20">
+                        ${owner.badgeText}
+                    </div>
+                                    ${generateBuilding3D(building.type, building.owner, building.level || 'Lv1')}
+                                `;
+
+                                // 更新點擊事件
+                                if (building.owner === 'P') {
+                                tile.onclick = (e) => {
+                                    e.stopPropagation();
+                                        openBuildingManagementModal(index);
+                                    };
+                                    tile.style.cursor = 'pointer';
+                                    } else {
+                                    tile.onclick = (e) => {
+                                        e.stopPropagation();
+                                        showToast(`${owner.name} 的工廠：${buildingData.name}`);
+                                };
+                                    tile.style.cursor = 'default';
+                                }
+                            } else {
+                                // 沒有建築，恢復為 3D 空地
+                                const land = landSystem.getLand(index);
+                                const visualInfo = landSystem.getLandVisualInfo(index);
+                                const owner = OWNER_CONFIG[land.owner];
+                                const clickable = land.owner === 'P';
+
+                                tile.className = `tile-3d-base ${clickable ? 'cursor-pointer' : 'cursor-not-allowed opacity-90'}`;
+                                
+                                const ownerBorderColor = owner.color.includes('yellow') ? '#facc15' : 
+                                                        owner.color.includes('rose') ? '#f43f5e' : 
+                                                        owner.color.includes('sky') ? '#0ea5e9' : 
+                                                        owner.color.includes('amber') ? '#f59e0b' : '#64748b';
+
+                                tile.innerHTML = `
+                                    <div class="tile-top ${visualInfo.bgClass} border-2 flex items-center justify-center" style="border-color: ${ownerBorderColor};">
+                                        <div class="absolute top-1 left-1 text-[9px] px-1.5 py-0.5 rounded-full text-black ${visualInfo.ownerBadge} font-bold z-10">
+                        ${owner.badgeText}
+                    </div>
+                                        <div class="text-2xl" title="${visualInfo.tooltip}">
+                        ${visualInfo.emoji}
+                    </div>
+                                        ${land.owner === 'P' ? '<span class="absolute bottom-1 right-1 text-[10px] text-emerald-400 font-bold">+</span>' : ''}
+                                    </div>
+                `;
+
+                                tile.onclick = clickable
+                                    ? () => onTileClick(index)
+                                    : () => showToast(`${owner.tooltip}，你不能在這裡蓋工廠！`);
+                            }
+                        }
+
+                        /**
+                         * 減碳投資功能
+                         */
+                        function investInCarbonReduction() {
+                            const baseCost = 15000;
+                            // 根據當前怒氣值計算降低值（3-8%）
+                            const reduction = 3 + Math.floor(gameState.monsterAnger / 20);
+                            
+                            if (gameState.money < baseCost) {
+                                showToast('❌ 資金不足！需要 $15,000 才能投資減碳技術');
+                                return;
+                            }
+
+                            if (gameState.monsterAnger <= 0) {
+                                showToast('✅ 怪獸怒氣值已經很低了，不需要投資！');
+                                return;
+                            }
+
+                            if (confirm(`確定要投資減碳技術嗎？\n\n花費：$${baseCost.toLocaleString()}\n效果：降低怪獸怒氣值 ${reduction}%\n\n這將幫助城市減少排放，讓怪獸遠離！`)) {
+                                gameState.subtractMoney(baseCost);
+                                gameState.reduceMonsterAnger(reduction);
+                                
+                                showToast(`✅ 投資減碳技術成功！\n怪獸怒氣值降低 ${reduction}%！\n你的減碳努力得到回報！`);
+                                
+                                updateUI();
+                                updateMonsterVisuals();
+                            }
+                        }
+
+                        function updateUI() {
+                            // Money
+                            animateValue('player-money', gameState.money, '$');
+                            
+                            // 更新減碳投資按鈕狀態
+                            const carbonBtn = document.getElementById('carbon-investment-btn');
+                            if (carbonBtn) {
+                                const canAfford = gameState.money >= 15000;
+                                const isEffective = gameState.monsterAnger > 0;
+                                carbonBtn.disabled = !canAfford || !isEffective;
+                                
+                                // 根據怒氣值更新按鈕文字
+                                if (gameState.monsterAnger >= 70) {
+                                    carbonBtn.className = 'mt-2 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed animate-pulse';
+                                    carbonBtn.title = '⚠️ 緊急！怪獸正在接近！投資減碳技術可以降低 ' + (3 + Math.floor(gameState.monsterAnger / 20)) + '% 怒氣值';
+                                } else {
+                                    carbonBtn.className = 'mt-2 px-4 py-1.5 bg-emerald-600 hover:bg-emerald-500 text-white text-xs font-bold rounded-lg transition transform hover:scale-105 disabled:opacity-50 disabled:cursor-not-allowed';
+                                    carbonBtn.title = '投資減碳技術，降低怪獸怒氣值 ' + (3 + Math.floor(gameState.monsterAnger / 20)) + '%';
+                                }
+                            }
+
+                            // Emission & Status - 使用 CarbonFeeSystem 計算
+                            const totalEmission = carbonFeeSystem.calculateTotalEmission('P');
+                            document.getElementById('current-emission').innerText = totalEmission.toLocaleString();
+                            const statusBadge = document.getElementById('emission-status');
+
+                            // 紅區閾值調整為免徵額度的 2.5 倍
+                            const redZoneThreshold = GAME_CONFIG.freeEmission * 2.5;
+                            if (totalEmission > redZoneThreshold) {
+                                statusBadge.innerText = "危險 (紅區)";
+                                statusBadge.className = "bg-rose-900 text-rose-200 text-[10px] px-2 py-0.5 rounded border border-rose-600 animate-pulse";
+                                speak("喔不！現在是紅區！怪獸會被吸引過來，而且你要付很多錢！");
+                            } else if (totalEmission > GAME_CONFIG.freeEmission) {
+                                statusBadge.innerText = "收費中 (黃區)";
+                                statusBadge.className = "bg-yellow-900 text-yellow-200 text-[10px] px-2 py-0.5 rounded border border-yellow-600";
+                                speak("注意！超過免稅額了，每一噸都要付錢喔！");
+                            } else {
+                                statusBadge.innerText = "安全 (綠區)";
+                                statusBadge.className = "bg-emerald-900 text-emerald-200 text-[10px] px-2 py-0.5 rounded border border-emerald-600";
+                            }
+
+            // 更新免稅額顯示
+            const freeEmissionDisplay = document.getElementById('free-emission-display');
+            const redZoneDisplay = document.getElementById('red-zone-display');
+            if (freeEmissionDisplay) {
+                freeEmissionDisplay.textContent = `${Math.floor(GAME_CONFIG.freeEmission / 1000)}k (免稅額)`;
+            }
+            if (redZoneDisplay) {
+                redZoneDisplay.textContent = `${Math.floor(GAME_CONFIG.freeEmission * 2.5 / 1000)}k`;
+            }
+
+                            // Credits
+                            document.getElementById('local-credits').innerText = gameState.domesticCredits;
+                            document.getElementById('intl-credits').innerText = gameState.intlCredits;
+
+                            // Prices
+                            document.getElementById('domestic-price').innerText = gameState.domesticPrice;
+                            document.getElementById('intl-price').innerText = gameState.intlPrice;
+
+                            // Header 年份 / 回合
+                            document.getElementById('header-year').innerText = `${gameState.year} 年`;
+                            document.getElementById('header-turn').innerText = `第 ${gameState.turn} / ${GAME_CONFIG.maxYears} 回合`;
+
+                            // 怪獸怒氣條（桌面端）
+                            const monsterBar = document.getElementById('monster-bar');
+                            if (monsterBar) {
+                                monsterBar.style.width = Math.min(gameState.monsterAnger, 100) + '%';
+                                if (gameState.monsterAnger > 70) {
+                                    monsterBar.classList.add('from-rose-500', 'to-rose-900');
+                                }
+                            }
+
+                            // 怪獸怒氣條（手機端）
+                            const monsterBarMobile = document.getElementById('monster-bar-mobile');
+                            const monsterAngerMobile = document.getElementById('monster-anger-mobile');
+                            if (monsterBarMobile) {
+                                monsterBarMobile.style.width = Math.min(gameState.monsterAnger, 100) + '%';
+                            }
+                            if (monsterAngerMobile) {
+                                monsterAngerMobile.textContent = Math.round(gameState.monsterAnger) + '%';
+                            }
+
+                            // 更新手機端減碳投資按鈕
+                            const carbonBtnMobile = document.getElementById('carbon-investment-btn-mobile');
+                            if (carbonBtnMobile) {
+                                const canAfford = gameState.money >= 15000;
+                                const isEffective = gameState.monsterAnger > 0;
+                                carbonBtnMobile.disabled = !canAfford || !isEffective;
+                            }
+
+                            updateNPCUI();
+                        }
+
+                        function updateMonsterVisuals() {
+                            const anger = gameState.monsterAnger;
+                            const container = document.getElementById('monster-approach-container');
+                            const monsterBody = document.getElementById('monster-body-3d');
+                            const monsterGlow = document.getElementById('monster-glow-3d');
+                            const warningEdge = document.getElementById('monster-warning-edge');
+                            const skyBackground = document.getElementById('sky-background');
+
+                            if (!container) return;
+
+                            // 根據怒氣值確定階段
+                            let stage = 'monster-stage-1';
+                            if (anger >= 90) {
+                                stage = 'monster-stage-5';
+                            } else if (anger >= 70) {
+                                stage = 'monster-stage-4';
+                            } else if (anger >= 50) {
+                                stage = 'monster-stage-3';
+                            } else if (anger >= 30) {
+                                stage = 'monster-stage-2';
+                            }
+
+                            // 更新容器類別
+                            container.className = `monster-approach-container ${stage}`;
+
+                            // 更新怪獸顏色和光效
+                            if (anger > 50) {
+                                if (monsterBody) {
+                                    monsterBody.style.background = `radial-gradient(circle, #dc2626, #991b1b)`;
+                                    monsterBody.style.boxShadow = `0 0 40px rgba(220, 38, 38, 1), inset 0 0 30px rgba(0,0,0,0.5)`;
+                                }
+                                if (monsterGlow) {
+                                    monsterGlow.style.background = '#dc2626';
+                                    monsterGlow.style.opacity = Math.min(0.6, 0.3 + (anger / 200));
+                                }
+                            } else {
+                                if (monsterBody) {
+                                    monsterBody.style.background = `radial-gradient(circle, #475569, #1f2937)`;
+                                    monsterBody.style.boxShadow = `0 0 30px rgba(71, 85, 105, 0.8), inset 0 0 20px rgba(0,0,0,0.5)`;
+                                }
+                                if (monsterGlow) {
+                                    monsterGlow.style.background = '#6366f1';
+                                    monsterGlow.style.opacity = 0.2;
+                                }
+                            }
+
+                            // 更新屏幕邊緣警告
+                            if (warningEdge) {
+                                if (anger >= 50) {
+                                    warningEdge.classList.add('active');
+                                    const width = Math.min(200, 50 + (anger - 50) * 3);
+                                    warningEdge.style.width = `${width}px`;
+                                } else {
+                                    warningEdge.classList.remove('active');
+                                    warningEdge.style.width = '0px';
+                                }
+                            }
+
+                            // 更新天空背景（根據怒氣值變紅）
+                            if (skyBackground) {
+                                const redIntensity = Math.min(0.6, (anger / 100) * 0.6);
+                                const skyGradient = skyBackground.querySelector('div');
+                                if (skyGradient) {
+                                    skyGradient.style.background = `linear-gradient(to bottom, rgba(220, 38, 38, ${redIntensity}), rgba(127, 29, 29, ${redIntensity * 0.5}), rgba(30, 41, 59, 1))`;
+                                }
+                            }
+
+                            // 高怒氣值時的震動效果
+                            if (anger >= 70) {
+                                document.body.style.animation = anger >= 90 
+                                    ? 'screen-shake 0.1s ease-in-out infinite' 
+                                    : 'screen-shake 0.3s ease-in-out infinite';
+                            } else {
+                                document.body.style.animation = '';
+                            }
+                        }
+
+                        function updateNPCUI() {
+                            // 用 emission / money 的相對比例更新 NPC 小條
+                            const npcKeys = ['A', 'B', 'C'];
+                            
+                            // 計算所有NPC的實際排放量（使用CarbonFeeSystem）
+                            const npcEmissions = npcKeys.map(k => carbonFeeSystem.calculateTotalEmission(k));
+                            const maxE = Math.max(1, ...npcEmissions);
+
+                            ['A', 'B', 'C'].forEach((key, index) => {
+                                const npc = gameState.competitors[key];
+                                const bar = document.getElementById(`npc${key}-bar`);
+                                const label = document.getElementById(`npc${key}-emission-label`);
+                                
+                                // 計算實際排放量
+                                const actualEmission = carbonFeeSystem.calculateTotalEmission(key);
+                                
+                                // 更新資金顯示
+                                const moneyEl = document.getElementById(`npc${key}-money`);
+                                if (moneyEl) {
+                                    moneyEl.textContent = `$${npc.money.toLocaleString()}`;
+                                }
+                                
+                                // 更新碳排放顯示
+                                const emissionEl = document.getElementById(`npc${key}-emission`);
+                                if (emissionEl) {
+                                    emissionEl.textContent = `${actualEmission.toLocaleString()} 噸`;
+                                }
+                                
+                                // 更新排放條（相對比例）
+                                const width = Math.max(10, (actualEmission / maxE) * 100);
+                                bar.style.width = `${Math.min(width, 100)}%`;
+
+                                // 更新排放標籤
+                                if (actualEmission > 20000) {
+                                    label.innerText = '排放爆表！';
+                                } else if (actualEmission > 10000) {
+                                    label.innerText = '排放偏高';
+                                } else {
+                                    label.innerText = key === 'B' ? '科技減碳中...' :
+                                        key === 'A' ? '高排放危險群' : '精打細算型';
+                                }
+                            });
+                        }
+
+                        // --- Modal & Action Logic ---
+
+                        function openBuildModal(index) {
+                            // 只有玩家欄位能開
+                            const grid = document.getElementById('game-grid');
+                            // 使用 dataset.index 查找地塊，而不是依賴 children 順序
+                            const tile = Array.from(grid.children).find(t => t.dataset.index == index);
+                            if (!tile || tile.dataset.owner !== 'P') {
+                                // 開發模式才顯示詳細錯誤
+                                if (window.DEBUG_MODE) {
+                                    console.warn('無法打開建造模態框：地塊不存在或不是玩家所有', { index, tile, owner: tile?.dataset.owner });
+                                }
+                                return;
+                            }
+
+                            // 已有建築就不開
+                            if (gameState.buildings.find(b => b.tileIndex === index)) {
+                                // 開發模式才顯示詳細日誌
+                                if (window.DEBUG_MODE) {
+                                    console.log('地塊已有建築，無法建造', { index });
+                                }
+                                return;
+                            }
+                            selectedTileIndex = index;
+
+                            const container = document.getElementById('build-options');
+                            container.innerHTML = '';
+
+                            Object.values(BUILDINGS).forEach(b => {
+                                const div = document.createElement('div');
+                                div.className = 'bg-slate-700 hover:bg-slate-600 border border-slate-600 p-3 rounded-xl cursor-pointer transition relative group';
+                                div.onclick = () => selectBuildingPreview(b);
+                                div.innerHTML = `
+                    <div class="flex justify-between items-start">
+                        <span class="text-3xl">${b.emoji}</span>
+                        <span class="font-mono font-bold text-yellow-400">$${b.cost}</span>
+                    </div>
+                    <div class="font-bold text-white mt-1">${b.name}</div>
+                    <div class="text-[10px] text-slate-400 mt-1">${b.desc}</div>
+                `;
+                                container.appendChild(div);
+                            });
+
+                            document.getElementById('build-modal').classList.remove('hidden');
+
+                            // Reset Preview
+                            document.getElementById('risk-icon').innerText = '❔';
+                            document.getElementById('risk-text').innerText = '請選擇工廠...';
+                            document.getElementById('risk-profit').innerText = '';
+                        }
+
+                        function selectBuildingPreview(building) {
+                            // 使用 CarbonFeeSystem 計算預估排放
+                            const currentEmission = carbonFeeSystem.calculateTotalEmission('P');
+
+                            // 模擬添加建築後的排放（簡化：直接加基礎排放）
+                            // 實際應該考慮土地屬性和等級，但預覽時簡化處理
+                            const land = landSystem.getLand(selectedTileIndex);
+                            const landCoeff = land ? land.emissionCoeff : 1.0;
+                            const projectedEmission = currentEmission + (building.emission * landCoeff);
+
+                            let riskHTML = '';
+                            let icon = '';
+                            let profit = building.income;
+
+                            if (gameState.money < building.cost) {
+                                icon = '💸';
+                                riskHTML = `<span class="text-rose-400">錢不夠！你需要 $${building.cost}</span>`;
+                            } else if (projectedEmission > 25000) {
+                                icon = '🤬';
+                                riskHTML = `<span class="text-rose-400">危險！這會激怒怪獸！(紅區)</span>`;
+                            } else if (projectedEmission > GAME_CONFIG.freeEmission) {
+                                icon = '🤔';
+                                riskHTML = `<span class="text-yellow-400">注意，這會增加碳費成本。</span>`;
+                            } else {
+                                icon = '👍';
+                                riskHTML = `<span class="text-emerald-400">好選擇！保持在安全範圍內。</span>`;
+                            }
+
+                            // 顯示土地資訊
+                            if (land) {
+                                riskHTML += `<br><span class="text-xs text-slate-400">土地：${land.name} (${land.description})</span>`;
+                            }
+
+                            document.getElementById('risk-icon').innerText = icon;
+                            document.getElementById('risk-text').innerHTML = riskHTML;
+                            document.getElementById('risk-profit').innerHTML = `預估年收: <span class="text-emerald-400">+$${profit}</span>`;
+
+                            // 增加確認按鈕
+                            const container = document.getElementById('build-options');
+                            const oldBtn = document.getElementById('confirm-build-btn');
+                            if (oldBtn) oldBtn.remove();
+
+            // 檢查是否可以建造（包括資金和建造次數限制）
+            const canAfford = gameState.money >= building.cost;
+            const canBuildNow = canPlayerBuild();
+            const currentCount = getCurrentBuildCount();
+            const maxBuildings = getMaxBuildsPerTurn();
+
+                            if (canAfford && canBuildNow) {
+                                const btn = document.createElement('button');
+                                btn.id = 'confirm-build-btn';
+                                btn.className = 'col-span-2 mt-2 bg-blue-600 hover:bg-blue-500 text-white font-bold py-2 rounded-lg';
+                                btn.innerText = `確認建造 ${building.name}`;
+                                btn.onclick = () => confirmBuild(building);
+                                container.appendChild(btn);
+                            } else if (!canAfford) {
+                                const btn = document.createElement('button');
+                                btn.id = 'confirm-build-btn';
+                                btn.className = 'col-span-2 mt-2 bg-slate-600 text-slate-400 font-bold py-2 rounded-lg cursor-not-allowed';
+                                btn.innerText = `資金不足 (需要 $${building.cost.toLocaleString()})`;
+                                btn.disabled = true;
+                                container.appendChild(btn);
+            } else if (!canBuildNow) {
+                                const btn = document.createElement('button');
+                                btn.id = 'confirm-build-btn';
+                                btn.className = 'col-span-2 mt-2 bg-rose-600 text-white font-bold py-2 rounded-lg cursor-not-allowed';
+                btn.innerText = `本回合建造次數已用完 (${currentCount}/${maxBuildings})`;
+                                btn.disabled = true;
+                                container.appendChild(btn);
+                            }
+                        }
+
+                        function confirmBuild(building) {
+            const currentCount = getCurrentBuildCount();
+            const maxBuildings = getMaxBuildsPerTurn();
+
+            if (currentCount >= maxBuildings || !canPlayerBuild()) {
+                showToast(`❌ 本回合已建造 ${currentCount} 個建築，最多只能建造 ${maxBuildings} 個！`);
+                closeModal('build-modal');
+                return;
+            }
+
+                            // 檢查資金
+                            if (gameState.money < building.cost) {
+                                showToast(`資金不足！需要 $${building.cost.toLocaleString()}`);
+                                return;
+                            }
+
+                            // 早期擴張警告（前3回合）
+                            if (gameState.turn <= 3 && GAME_CONFIG.earlyExpansionPenalty) {
+                                const warning = `⚠️ 早期擴張警告：前3回合建造的建築，碳費將增加 ${(GAME_CONFIG.earlyExpansionPenaltyRate * 100 - 100).toFixed(0)}%！`;
+                                if (!confirm(warning + '\n\n確定要繼續建造嗎？')) {
+                                    return;
+                                }
+                            }
+
+            // 先增加建造計數（在實際建造前，防止重複建造）
+            const countBeforeIncrement = getCurrentBuildCount();
+            incrementPlayerBuildCount();
+
+            // 驗證計數沒有超過限制
+            if (getCurrentBuildCount() > maxBuildings) {
+                // 如果超過限制，回退計數並阻止建造
+                gameState.buildingsBuiltThisTurn = countBeforeIncrement;
+                showToast(`❌ 建造次數已用完！`);
+                closeModal('build-modal');
+                return;
+            }
+
+                            // 扣除資金
+                            gameState.subtractMoney(building.cost);
+
+                            // 實際建造
+                            addBuildingToTile(selectedTileIndex, building.id, 'P', 'Lv1');
+                            closeModal('build-modal');
+
+                            // 重新計算統計數據（排放、收入等）
+                            recalcStats();
+
+                            // 增加一點怒氣 (建造擾動)
+                            gameState.addMonsterAnger(2);
+
+                            // 顯示剩餘建造次數
+            const remaining = maxBuildings - getCurrentBuildCount();
+                            if (remaining > 0) {
+                                showToast(`✅ 建造成功！本回合還可建造 ${remaining} 個建築`);
+                            } else {
+                                showToast(`✅ 建造成功！本回合建造次數已用完`);
+                            }
+
+                            // 更新 UI
+                            updateUI();
+                            
+                            // 檢查成就
+                            checkAchievements();
+                            
+                            // 檢查教學進度
+                            tutorialSystem.checkAction('wait_build');
+                            
+                            // 自動保存
+                            saveSystem.autoSave(gameState, { lands: landSystem.getAllLands() });
+                        }
+
+                        function openShop(type) {
+                            const modal = document.getElementById('shop-modal');
+                            const title = document.getElementById('shop-title');
+                            const priceDisplay = document.getElementById('shop-price');
+                            const actions = document.getElementById('shop-actions');
+
+                            modal.classList.remove('hidden');
+
+                            if (type === 'domestic') {
+                                title.innerHTML = '🛒 國內許可證交易所';
+                                priceDisplay.innerHTML = `$ ${gameState.domesticPrice} <span class="text-xs text-slate-400">/ 噸</span>`;
+                                const p = gameState.domesticPrice;
+                                actions.innerHTML = `
+                    <button onclick="trade('domestic', 'buy', 100)" class="bg-emerald-700 hover:bg-emerald-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>買進 100 噸</span>
+                        <span class="text-xs opacity-70">花費 $${p * 100}</span>
+                    </button>
+                    <button onclick="trade('domestic', 'buy', 500)" class="bg-emerald-700 hover:bg-emerald-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>買進 500 噸</span>
+                        <span class="text-xs opacity-70">花費 $${p * 500}</span>
+                    </button>
+                    <button onclick="trade('domestic', 'sell', 100)" class="bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>賣出 100 噸</span>
+                        <span class="text-xs opacity-70">獲得 $${p * 100}</span>
+                    </button>
+                    <button onclick="trade('domestic', 'sell', 500)" class="bg-slate-700 hover:bg-slate-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>賣出 500 噸</span>
+                        <span class="text-xs opacity-70">獲得 $${p * 500}</span>
+                    </button>
+                `;
+                            } else {
+                                title.innerHTML = '✈️ 國際碳權市場 (只能買)';
+                                priceDisplay.innerHTML = `$ ${gameState.intlPrice} <span class="text-xs text-slate-400">/ 噸</span>`;
+                                const p = gameState.intlPrice;
+                                actions.innerHTML = `
+                    <button onclick="trade('intl', 'buy', 100)" class="bg-blue-700 hover:bg-blue-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>購買 100 噸 (高品質)</span>
+                        <span class="text-xs opacity-70">花費 $${p * 100}</span>
+                    </button>
+                    <button onclick="trade('intl', 'buy', 500)" class="bg-blue-700 hover:bg-blue-600 text-white py-3 rounded-xl font-bold flex flex-col items-center">
+                        <span>購買 500 噸 (高品質)</span>
+                        <span class="text-xs opacity-70">花費 $${p * 500}</span>
+                    </button>
+                `;
+                            }
+                        }
+
+                        function trade(market, action, amount) {
+                            const price = market === 'domestic' ? gameState.domesticPrice : gameState.intlPrice;
+                            const cost = amount * price;
+
+                            if (action === 'buy') {
+                                if (gameState.money >= cost) {
+                                    gameState.subtractMoney(cost);
+                                    if (market === 'domestic') {
+                                        gameState.setDomesticCredits(gameState.domesticCredits + amount);
+                                    } else {
+                                        gameState.setIntlCredits(gameState.intlCredits + amount);
+                                    }
+                                    showToast(`交易成功！買進 ${amount} 噸`);
+                                } else {
+                                    showToast("資金不足！");
+                                    return; // Don't close modal
+                                }
+                            } else {
+                                if (gameState.domesticCredits >= amount) {
+                                    gameState.addMoney(cost);
+                                    gameState.setDomesticCredits(gameState.domesticCredits - amount);
+                                    showToast(`成功賣出 ${amount} 噸`);
+                                } else {
+                                    showToast("庫存不足！");
+                                    return;
+                                }
+                            }
+                            closeModal('shop-modal');
+                        }
+
+                        // NPC 行動現在由 NPCAISystem 處理（策略模式）
+
+                        function computeRankAndPollutionInfo() {
+                            // 使用 CarbonFeeSystem 計算實際排放
+                            const playerEmission = carbonFeeSystem.calculateTotalEmission('P');
+                            const list = [
+                                { key: 'Player', name: '你', money: gameState.money, emission: playerEmission },
+                                ...Object.entries(gameState.competitors).map(([k, v]) => ({
+                                    key: k,
+                                    name: v.name,
+                                    money: v.money,
+                                    emission: carbonFeeSystem.calculateTotalEmission(k)
+                                }))
+                            ];
+
+                            list.sort((a, b) => b.money - a.money);
+                            const playerIndex = list.findIndex(x => x.key === 'Player');
+
+                            // 找出污染王
+                            const pollutionKing = [...list].sort((a, b) => b.emission - a.emission)[0];
+
+                            return { rankList: list, playerRank: playerIndex + 1, pollutionKing };
+                        }
+
+                        // --- Turn Logic ---
+
+        function endTurn() {
+            if (isSettlementPending) {
+                showToast('請先點擊「繼續下一回合」完成結算！');
+                return;
+            }
+
+            isSettlementPending = true;
+            setEndTurnButtonDisabled(true);
+
+            try {
+                // 使用 TurnSystem 執行年度結算
+                const settlement = turnSystem.executeYearEndSettlement();
+
+                const income = settlement.income;
+                const displayTax = settlement.carbonFee;
+                const cbamTax = settlement.cbamTax;
+
+                // NPC 行動 - 使用 NPCAISystem
+                const npcEvents = npcAISystem.executeAllNPCs();
+
+                // 立即更新 NPC UI（顯示最新的資金和碳排放）
+                updateNPCUI();
+
+                // 更新 NPC 建築的視覺（因為 NPCAISystem 只更新狀態，需要同步視覺）
+                gameState.buildings
+                    .filter(b => b.owner !== 'P')
+                    .forEach(building => {
+                        const tile = document.querySelector(`#game-grid > div[data-index="${building.tileIndex}"]`);
+                        if (tile) {
+                            // 檢查是否需要更新視覺（如果地塊沒有建築圖標）
+                            const hasBuildingIcon = tile.querySelector('.text-3xl');
+                            if (!hasBuildingIcon) {
+                                addBuildingToTile(building.tileIndex, building.type, building.owner, building.level || 'Lv1');
+                            } else {
+                                // 更新等級標籤
+                                const levelBadge = tile.querySelector('.absolute.top-1.right-1');
+                                const level = building.level || 'Lv1';
+                                if (level !== 'Lv1') {
+                                    if (!levelBadge) {
+                                        const badge = document.createElement('div');
+                                        badge.className = 'absolute top-1 right-1 text-[8px] bg-blue-600 text-white px-1 rounded';
+                                        badge.textContent = level;
+                                        tile.appendChild(badge);
+                                    } else {
+                                        levelBadge.textContent = level;
+                                    }
+                                }
+                            }
+                        }
+                    });
+
+                // 更新 NPC 購買地塊後的視覺（檢查所有地塊的所有者變化）
+                landSystem.getAllLands().forEach(land => {
+                    const tile = document.querySelector(`#game-grid > div[data-index="${land.index}"]`);
+                    if (tile) {
+                        const building = gameState.getBuildingAtTile(land.index);
+                        // 如果地塊沒有建築，更新視覺以反映新的所有者
+                        if (!building) {
+                            updateTileVisual(land.index);
+                            }
+                        }
+                    });
+
+                // 更新怪獸
+                const monsterUpdate = turnSystem.updateMonsterFromGlobalEmission();
+
+                // 更新市場價格
+                const priceUpdate = turnSystem.updateMarketPrices();
+
+                // 排名計算
+                const { rankList, playerRank, pollutionKing } = computeRankAndPollutionInfo();
+
+                // 更新報告 Modal
+                document.getElementById('report-income').innerText = `+ $${income}`;
+                const totalTax = displayTax + cbamTax;
+                document.getElementById('report-tax').innerText = `- $${totalTax} (碳費: $${displayTax}${cbamTax > 0 ? ` + CBAM: $${cbamTax}` : ''})`;
+                document.getElementById('report-year-label').innerText = `${gameState.year} 年結算報告`;
+                document.getElementById('report-rank').innerText = `第 ${playerRank} 名`;
+
+                const first = rankList[0];
+                const carbonFeeResult = carbonFeeSystem.calculateCarbonFee('P');
+                let detailHTML = `
+                <p>👑 第一名：${first.name} ($${first.money})</p>
+                <p>☠️ 污染王：${pollutionKing.name} (排放 ${pollutionKing.emission} 噸)</p>
+            `;
+
+                // 添加查核事件資訊
+                if (settlement.auditEvent) {
+                    detailHTML += `<p class="text-xs mt-2 text-yellow-600 font-bold">${settlement.auditEvent.message}</p>`;
+                }
+
+                // 添加 CBAM 資訊
+                if (settlement.cbamApplied && cbamTax > 0) {
+                    detailHTML += `<p class="text-xs mt-1 text-blue-600">⚠️ CBAM 境外稅已生效（第 ${GAME_CONFIG.cbamStartTurn} 回合起）</p>`;
+                }
+
+                document.getElementById('report-rank-detail').innerHTML = detailHTML;
+
+                document.getElementById('report-modal').classList.remove('hidden');
+
+                // 更新 NPC 排名小標
+                rankList.forEach((item, index) => {
+                    if (item.key === 'A') document.getElementById('npcA-rank').innerText = `#${index + 1}`;
+                    if (item.key === 'B') document.getElementById('npcB-rank').innerText = `#${index + 1}`;
+                    if (item.key === 'C') document.getElementById('npcC-rank').innerText = `#${index + 1}`;
+                });
+
+                // 新聞：把這回合發生的事情轉成訊息
+                const newsEvents = [];
+
+                newsEvents.push(`你本年淨賺 $${income}，支付碳費 $${displayTax}${cbamTax > 0 ? `，CBAM 稅 $${cbamTax}` : ''}。`);
+
+                // 查核事件
+                if (settlement.auditEvent) {
+                    newsEvents.push(settlement.auditEvent.message);
+                }
+
+                if (npcEvents && npcEvents.length > 0) {
+                    newsEvents.push(...npcEvents);
+                }
+
+                // 市場價格變動
+                if (priceUpdate.domesticPrice.change !== 0) {
+                    const diff = priceUpdate.domesticPrice.change;
+                    const dir = diff > 0 ? '上漲' : '下跌';
+                    newsEvents.push(`國內碳費${dir}至 $${priceUpdate.domesticPrice.new} / 噸。`);
+                }
+
+                newsEvents.push(`全球排放 ${monsterUpdate.totalWorldEmission.toLocaleString()} 噸，怪獸怒氣 +${monsterUpdate.growth}% (目前約 ${gameState.monsterAnger}%)。`);
+
+                updateNews(newsEvents);
+
+                updateUI();
+                updateMonsterVisuals();
+                
+                // 檢查成就
+                checkAchievements();
+                
+                // 檢查教學進度
+                tutorialSystem.checkAction('wait_end_turn');
+                
+                // 自動保存
+                saveSystem.autoSave(gameState, { lands: landSystem.getAllLands() });
+            } catch (error) {
+                // 錯誤處理：生產環境顯示友善訊息，開發模式顯示詳細錯誤
+                if (window.DEBUG_MODE) {
+                    console.error('❌ endTurn 發生錯誤：', error);
+                    showToast('結算過程發生錯誤，請查看 Console 訊息');
+                } else {
+                    console.error('遊戲錯誤：', error.message || '未知錯誤');
+                    showToast('結算過程發生錯誤，請重新整理頁面');
+                }
+                isSettlementPending = false;
+                setEndTurnButtonDisabled(false);
+            }
+                        }
+
+                        function startNextTurn() {
+                            gameState.nextTurn();
+                            closeModal('report-modal');
+            isSettlementPending = false;
+            setEndTurnButtonDisabled(false);
+
+                            // 檢查遊戲結束
+                            if (gameState.monsterAnger >= 100) {
+                                showGameOverModal('monster');
+                                return;
+                            } else if (gameState.turn > GAME_CONFIG.maxYears) {
+                                showGameOverModal('normal');
+                                return;
+                            }
+                        }
+
+                        function updateNews(events) {
+                            if (!events || events.length === 0) return;
+                            const feed = document.getElementById('news-feed');
+                            const newHtml = events.map(e =>
+                                `<p class="border-l-2 border-yellow-500 pl-2 text-yellow-200">${e}</p>`
+                            ).join('') + feed.innerHTML;
+                            feed.innerHTML = newHtml;
+                        }
+
+                        // --- Helper Functions ---
+
+                        function closeModal(id) {
+                            document.getElementById(id).classList.add('hidden');
+                        }
+
+                        // --- 頭像更換功能 ---
+                        function getAvatarSeed() {
+                            // 從 localStorage 讀取保存的頭像種子
+                            return localStorage.getItem('playerAvatarSeed') || 'Player1';
+                        }
+
+                        function saveAvatarSeed(seed) {
+                            // 保存頭像種子到 localStorage
+                            localStorage.setItem('playerAvatarSeed', seed);
+                        }
+
+                        function updateAvatarImage(seed) {
+                            // 更新頭像圖片
+                            const img = document.getElementById('player-avatar-img');
+                            if (img) {
+                                img.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(seed)}&backgroundColor=b6e3f4`;
+                            }
+                        }
+
+                        function openAvatarModal() {
+                            const modal = document.getElementById('avatar-modal');
+                            const optionsContainer = document.getElementById('avatar-options');
+                            
+                            // 生成預設頭像選項
+                            const presetSeeds = [
+                                'Player1', 'Business', 'CEO', 'Manager', 
+                                'Leader', 'Boss', 'Executive', 'Director',
+                                'Entrepreneur', 'Innovator', 'Visionary', 'Strategist'
+                            ];
+                            
+                            optionsContainer.innerHTML = '';
+                            presetSeeds.forEach(seed => {
+                                const div = document.createElement('div');
+                                div.className = 'cursor-pointer group';
+                                div.onclick = () => selectAvatar(seed);
+                                div.innerHTML = `
+                                    <div class="w-16 h-16 mx-auto bg-indigo-500 rounded-full border-2 border-slate-600 overflow-hidden group-hover:border-blue-400 transition">
+                                        <img src="https://api.dicebear.com/7.x/avataaars/svg?seed=${encodeURIComponent(seed)}&backgroundColor=b6e3f4"
+                                            alt="${seed}" class="w-full h-full object-cover">
+                                    </div>
+                                    <p class="text-xs text-slate-400 text-center mt-1 group-hover:text-white transition">${seed}</p>
+                                `;
+                                optionsContainer.appendChild(div);
+                            });
+                            
+                            modal.classList.remove('hidden');
+                        }
+
+                        function selectAvatar(seed) {
+                            updateAvatarImage(seed);
+                            saveAvatarSeed(seed);
+                            closeModal('avatar-modal');
+                            showToast('✅ 頭像已更換！');
+                        }
+
+                        function applyCustomAvatar() {
+                            const input = document.getElementById('custom-avatar-seed');
+                            const seed = input.value.trim();
+                            if (seed) {
+                                selectAvatar(seed);
+                                input.value = '';
+                            } else {
+                                showToast('❌ 請輸入名稱');
+                            }
+                        }
+
+                        // 初始化時載入保存的頭像
+                        function initAvatar() {
+                            const seed = getAvatarSeed();
+                            updateAvatarImage(seed);
+                        }
+
+                        function speak(text) {
+                            const el = document.getElementById('robot-msg');
+                            el.innerHTML = text;
+                            el.parentElement.classList.add('animate-shake');
+                            setTimeout(() => el.parentElement.classList.remove('animate-shake'), 500);
+                        }
+
+                        function showToast(msg) {
+                            const toast = document.createElement('div');
+                            toast.className = 'fixed top-20 left-1/2 -translate-x-1/2 bg-slate-800 text-white px-6 py-3 rounded-full shadow-2xl border border-slate-600 z-[100] animate-float';
+                            toast.innerText = msg;
+                            document.body.appendChild(toast);
+                            setTimeout(() => toast.remove(), 2000);
+                        }
+
+                        function animateValue(id, end, prefix) {
+                            const obj = document.getElementById(id);
+                            obj.innerText = prefix + end.toLocaleString();
+                        }
+
+                        // 創建建築管理模態框（如果不存在）
+                        function createBuildingManagementModal() {
+                            // 模態框已在 HTML 中定義，此函數保留以備將來擴展
+                        }
+
+                        // --- 保存/載入系統函數 ---
+                        function openSaveLoadModal() {
+                            const modal = document.getElementById('save-load-modal');
+                            modal.classList.remove('hidden');
+                            updateSaveSlots();
+                        }
+
+                        function updateSaveSlots() {
+                            const slotsContainer = document.getElementById('save-slots');
+                            const saveInfo = saveSystem.getSaveInfo();
+                            
+                            slotsContainer.innerHTML = '';
+                            saveInfo.forEach((info, index) => {
+                                const slotDiv = document.createElement('div');
+                                slotDiv.className = 'bg-slate-700 p-3 rounded-lg border border-slate-600 flex items-center justify-between';
+                                
+                                if (info.exists) {
+                                    slotDiv.innerHTML = `
+                                        <div class="flex-1">
+                                            <div class="font-bold text-white">槽位 ${index + 1}</div>
+                                            <div class="text-xs text-slate-400">第 ${info.turn} 回合 | ${info.year} 年</div>
+                                            <div class="text-xs text-slate-500">$${info.money.toLocaleString()} | ${info.formattedDate}</div>
+                                        </div>
+                                        <div class="flex gap-2">
+                                            <button onclick="loadGame(${index})" class="px-3 py-1 bg-blue-600 hover:bg-blue-500 text-white text-sm rounded">載入</button>
+                                            <button onclick="saveGame(${index})" class="px-3 py-1 bg-emerald-600 hover:bg-emerald-500 text-white text-sm rounded">保存</button>
+                                            <button onclick="deleteSave(${index})" class="px-3 py-1 bg-rose-600 hover:bg-rose-500 text-white text-sm rounded">刪除</button>
+                                        </div>
+                                    `;
+                                } else {
+                                    slotDiv.innerHTML = `
+                                        <div class="flex-1 text-slate-400">槽位 ${index + 1} (空)</div>
+                                        <button onclick="saveGame(${index})" class="px-3 py-1 bg-slate-600 hover:bg-slate-500 text-white text-sm rounded">保存</button>
+                                    `;
+                                }
+                                
+                                slotsContainer.appendChild(slotDiv);
+                            });
+                        }
+
+                        function saveGame(slotIndex) {
+                            const additionalData = {
+                                lands: landSystem.getAllLands()
+                            };
+                            if (saveSystem.saveGame(slotIndex, gameState, additionalData)) {
+                                showToast(`✅ 遊戲已保存到槽位 ${slotIndex + 1}`);
+                                updateSaveSlots();
+                            } else {
+                                showToast('❌ 保存失敗');
+                            }
+                        }
+
+                        function loadGame(slotIndex) {
+                            const saveData = saveSystem.loadGame(slotIndex, gameState);
+                            if (saveData) {
+                                // 恢復土地系統
+                                if (saveData.additionalData && saveData.additionalData.lands) {
+                                    // 重新初始化土地系統（簡化處理）
+                                    landSystem.initializeLands(20, ['P', 'A', 'B', 'C']);
+                                }
+                                
+                                // 重新初始化 NPC AI
+                                npcAISystem = new NPCAISystem(gameState, carbonFeeSystem, landSystem);
+                                
+                                // 更新 UI
+                                initGrid();
+                                updateUI();
+                                updateMonsterVisuals();
+                                
+                                showToast(`✅ 遊戲已從槽位 ${slotIndex + 1} 載入`);
+                                closeModal('save-load-modal');
+                            } else {
+                                showToast('❌ 載入失敗');
+                            }
+                        }
+
+                        function deleteSave(slotIndex) {
+                            if (confirm(`確定要刪除槽位 ${slotIndex + 1} 的存檔嗎？`)) {
+                                if (saveSystem.deleteSave(slotIndex)) {
+                                    showToast(`✅ 槽位 ${slotIndex + 1} 的存檔已刪除`);
+                                    updateSaveSlots();
+                                }
+                            }
+                        }
+
+                        function autoSaveGame() {
+                            saveGame(0);
+                        }
+
+                        // --- 成就系統函數 ---
+                        function openAchievementModal() {
+                            const modal = document.getElementById('achievement-modal');
+                            modal.classList.remove('hidden');
+                            updateAchievementUI();
+                        }
+
+                        function updateAchievementUI() {
+                            const progress = achievementSystem.getProgress();
+                            const progressEl = document.getElementById('achievement-progress');
+                            progressEl.innerHTML = `
+                                <div class="flex justify-between items-center mb-2">
+                                    <span class="text-sm font-bold text-slate-300">成就進度</span>
+                                    <span class="text-sm font-bold text-white">${progress.unlocked} / ${progress.total}</span>
+                                </div>
+                                <div class="w-full bg-slate-800 rounded-full h-2 mb-2">
+                                    <div class="bg-emerald-500 h-2 rounded-full transition-all" style="width: ${progress.progress}%"></div>
+                                </div>
+                                <div class="flex justify-between text-xs text-slate-400">
+                                    <span>成就點數: ${progress.unlockedPoints} / ${progress.totalPoints}</span>
+                                    <span>${progress.progress}%</span>
+                                </div>
+                            `;
+
+                            const listEl = document.getElementById('achievement-list');
+                            const allAchievements = achievementSystem.getAllAchievements();
+                            
+                            listEl.innerHTML = '';
+                            allAchievements.forEach(achievement => {
+                                const isUnlocked = achievementSystem.unlockedAchievements.includes(achievement.id);
+                                const div = document.createElement('div');
+                                div.className = `bg-slate-700 p-3 rounded-lg border ${isUnlocked ? 'border-emerald-500' : 'border-slate-600 opacity-60'}`;
+                                div.innerHTML = `
+                                    <div class="flex items-start gap-3">
+                                        <div class="text-3xl">${achievement.icon}</div>
+                                        <div class="flex-1">
+                                            <div class="flex items-center justify-between mb-1">
+                                                <span class="font-bold ${isUnlocked ? 'text-white' : 'text-slate-400'}">${achievement.name}</span>
+                                                ${isUnlocked ? '<span class="text-xs bg-emerald-500 text-white px-2 py-0.5 rounded">已解鎖</span>' : ''}
+                                            </div>
+                                            <div class="text-sm ${isUnlocked ? 'text-slate-300' : 'text-slate-500'}">${achievement.description}</div>
+                                            <div class="text-xs text-slate-500 mt-1">${achievement.points} 點 | ${achievement.category === 'hidden' ? '隱藏成就' : achievement.category}</div>
+                                        </div>
+                                    </div>
+                                `;
+                                listEl.appendChild(div);
+                            });
+                        }
+
+                        function checkAchievements() {
+                            const rankInfo = computeRankAndPollutionInfo();
+                            const newlyUnlocked = achievementSystem.checkAchievements(
+                                gameState,
+                                carbonFeeSystem,
+                                { BUILDINGS, rankInfo, landSystem }
+                            );
+
+                            if (newlyUnlocked.length > 0) {
+                                newlyUnlocked.forEach(achievement => {
+                                    showToast(`🏆 成就解鎖: ${achievement.name}`, 3000);
+                                });
+                                updateAchievementBadge();
+                            }
+                        }
+
+                        function updateAchievementBadge() {
+                            const badge = document.getElementById('achievement-badge');
+                            const progress = achievementSystem.getProgress();
+                            if (progress.unlocked > 0) {
+                                badge.textContent = progress.unlocked;
+                                badge.classList.remove('hidden');
+                            }
+                        }
+
+                        // --- 地塊購買函數 ---
+                        function openLandPurchaseModal(tileIndex) {
+                            const modal = document.getElementById('land-purchase-modal');
+                            const contentEl = document.getElementById('land-purchase-content');
+                            
+                            const land = landSystem.getLand(tileIndex);
+                            if (!land) {
+                                showToast('地塊不存在！');
+                                return;
+                            }
+
+                            // 檢查是否可以購買
+                            if (!gameState.canPurchaseLand()) {
+                                showToast('本回合已購買過地塊，每回合最多購買 1 個！');
+                                return;
+                            }
+
+                            // 計算購買價格
+                            const price = landSystem.calculatePurchasePrice(tileIndex, gameState.turn, gameState.money);
+                            const canAfford = gameState.money >= price;
+                            const landTypeInfo = landSystem.getLandTypeInfo(land.type);
+                            const currentOwner = OWNER_CONFIG[land.owner];
+
+                            contentEl.innerHTML = `
+                                <div class="space-y-4">
+                                    <!-- 地塊信息 -->
+                                    <div class="bg-slate-900 p-4 rounded-lg">
+                                        <div class="flex items-center gap-3 mb-3">
+                                            <span class="text-4xl">${land.emoji}</span>
+                                            <div>
+                                                <div class="font-bold text-white text-lg">${land.name}</div>
+                                                <div class="text-sm text-slate-400">${landTypeInfo.description}</div>
+                                            </div>
+                                        </div>
+                                        <div class="grid grid-cols-2 gap-2 text-sm">
+                                            <div>
+                                                <div class="text-slate-400">當前所有者</div>
+                                                <div class="font-bold text-white">${currentOwner.name}</div>
+                                            </div>
+                                            <div>
+                                                <div class="text-slate-400">排放係數</div>
+                                                <div class="font-bold ${land.emissionCoeff < 1 ? 'text-emerald-400' : land.emissionCoeff > 1 ? 'text-rose-400' : 'text-white'}">
+                                                    ${land.emissionCoeff.toFixed(2)}x
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <!-- 價格信息 -->
+                                    <div class="bg-slate-900 p-4 rounded-lg border-2 ${canAfford ? 'border-emerald-500' : 'border-rose-500'}">
+                                        <div class="text-xs text-slate-400 mb-1">購買價格</div>
+                                        <div class="text-3xl font-black ${canAfford ? 'text-emerald-400' : 'text-rose-400'}">
+                                            $${price.toLocaleString()}
+                                        </div>
+                                        <div class="text-xs text-slate-500 mt-1">
+                                            當前資金: $${gameState.money.toLocaleString()}
+                                        </div>
+                                        ${!canAfford ? '<div class="text-xs text-rose-400 mt-2">⚠️ 資金不足！</div>' : ''}
+                                    </div>
+
+                                    <!-- 購買說明 -->
+                                    <div class="bg-blue-900/30 p-3 rounded-lg border border-blue-500">
+                                        <div class="text-xs text-blue-200">
+                                            💡 購買後，此地塊將歸您所有，可以立即建造建築。每回合最多購買 1 個地塊。
+                                        </div>
+                                    </div>
+
+                                    <!-- 購買按鈕 -->
+                                    <button 
+                                        onclick="confirmLandPurchase(${tileIndex}, ${price})" 
+                                        ${!canAfford ? 'disabled' : ''}
+                                        class="w-full py-3 ${canAfford ? 'bg-emerald-600 hover:bg-emerald-500' : 'bg-slate-600 cursor-not-allowed'} text-white font-bold rounded-lg transition">
+                                        ${canAfford ? '確認購買' : '資金不足'}
+                                    </button>
+                                </div>
+                            `;
+
+                            modal.classList.remove('hidden');
+                        }
+
+                        function confirmLandPurchase(tileIndex, price) {
+                            // 再次檢查條件
+                            if (!gameState.canPurchaseLand()) {
+                                showToast('本回合已購買過地塊！');
+                                return;
+                            }
+
+                            if (gameState.money < price) {
+                                showToast('資金不足！');
+                                return;
+                            }
+
+                            const checkResult = landSystem.canPurchase(tileIndex, 'P', (idx) => {
+                                return gameState.getBuildingAtTile(idx) !== undefined;
+                            });
+
+                            if (!checkResult.canPurchase) {
+                                showToast(checkResult.reason);
+                                return;
+                            }
+
+                            // 執行購買
+                            const result = landSystem.purchaseLand(tileIndex, 'P', price);
+                            if (result.success) {
+                                // 扣除資金
+                                gameState.subtractMoney(price);
+                                
+                                // 增加購買計數
+                                gameState.incrementLandPurchaseCount();
+                                
+                                // 更新地塊視覺
+                                updateTileVisual(tileIndex);
+                                
+                                // 更新 UI
+                                updateUI();
+                                
+                                showToast(`✅ ${result.message}`);
+                                closeModal('land-purchase-modal');
+                                
+                                // 檢查成就
+                                checkAchievements();
+                                
+                                // 自動保存
+                                saveSystem.autoSave(gameState, { lands: landSystem.getAllLands() });
+                            } else {
+                                showToast(`❌ ${result.message}`);
+                            }
+                        }
+
+                        // --- 數據面板函數 ---
+                        function toggleDataPanel() {
+                            const modal = document.getElementById('data-panel-modal');
+                            if (modal.classList.contains('hidden')) {
+                                modal.classList.remove('hidden');
+                                updateDataPanel();
+                            } else {
+                                modal.classList.add('hidden');
+                            }
+                        }
+
+                        function updateDataPanel() {
+                            // 更新碳費計算詳情
+                            const carbonFeeResult = carbonFeeSystem.calculateCarbonFee('P');
+                            const breakdownEl = document.getElementById('carbon-fee-breakdown');
+                            breakdownEl.innerHTML = dataPanel.generateCarbonFeeBreakdown(carbonFeeResult, gameState);
+
+                            // 更新排放來源追溯
+                            const playerBuildings = gameState.getPlayerBuildings();
+                            const traceEl = document.getElementById('emission-source-trace');
+                            traceEl.innerHTML = dataPanel.generateEmissionSourceTrace(
+                                playerBuildings,
+                                carbonFeeSystem,
+                                landSystem,
+                                BUILDINGS
+                            );
+                        }
+
+                        // --- 抽屜控制函數 ---
+                        function toggleLeftDrawer() {
+                            const drawer = document.getElementById('left-drawer');
+                            const overlay = document.getElementById('drawer-overlay');
+                            if (drawer.classList.contains('drawer-hidden')) {
+                                drawer.classList.remove('drawer-hidden');
+                                overlay.classList.add('active');
+                            } else {
+                                drawer.classList.add('drawer-hidden');
+                                overlay.classList.remove('active');
+                            }
+                            // 關閉右側抽屜
+                            const rightDrawer = document.getElementById('right-drawer');
+                            rightDrawer.classList.add('drawer-right-hidden');
+                        }
+
+                        function toggleRightDrawer() {
+                            const drawer = document.getElementById('right-drawer');
+                            const overlay = document.getElementById('drawer-overlay');
+                            if (drawer.classList.contains('drawer-right-hidden')) {
+                                drawer.classList.remove('drawer-right-hidden');
+                                overlay.classList.add('active');
+                            } else {
+                                drawer.classList.add('drawer-right-hidden');
+                                overlay.classList.remove('active');
+                            }
+                            // 關閉左側抽屜
+                            const leftDrawer = document.getElementById('left-drawer');
+                            leftDrawer.classList.add('drawer-hidden');
+                        }
+
+                        function closeAllDrawers() {
+                            const leftDrawer = document.getElementById('left-drawer');
+                            const rightDrawer = document.getElementById('right-drawer');
+                            const overlay = document.getElementById('drawer-overlay');
+                            leftDrawer.classList.add('drawer-hidden');
+                            rightDrawer.classList.add('drawer-right-hidden');
+                            overlay.classList.remove('active');
+                        }
+
+                        // --- 將函數附加到 window 對象，以便 HTML 的 onclick 可以訪問 ---
+                        window.endTurn = endTurn;
+                        window.openShop = openShop;
+                        window.closeModal = closeModal;
+                        window.startNextTurn = startNextTurn;
+                        window.trade = trade;
+                        window.openBuildingManagementModal = openBuildingManagementModal;
+                        window.closeBuildingManagementModal = closeBuildingManagementModal;
+                        window.upgradeBuilding = upgradeBuilding;
+                        window.updateTileVisual = updateTileVisual;
+                        window.openSaveLoadModal = openSaveLoadModal;
+                        window.investInCarbonReduction = investInCarbonReduction;
+                        window.saveGame = saveGame;
+                        window.loadGame = loadGame;
+                        window.deleteSave = deleteSave;
+                        window.autoSaveGame = autoSaveGame;
+                        window.openAvatarModal = openAvatarModal;
+                        window.selectAvatar = selectAvatar;
+                        window.applyCustomAvatar = applyCustomAvatar;
+                        window.openAchievementModal = openAchievementModal;
+                        window.toggleDataPanel = toggleDataPanel;
+                        window.closeGameOverModal = closeGameOverModal;
+                        window.toggleLeftDrawer = toggleLeftDrawer;
+                        window.toggleRightDrawer = toggleRightDrawer;
+                        window.closeAllDrawers = closeAllDrawers;
+                        window.restartGame = restartGame;
+                        window.openLandPurchaseModal = openLandPurchaseModal;
+                        window.confirmLandPurchase = confirmLandPurchase;
+                        
+                        // 將教學系統暴露到全局，以便 HTML 可以訪問
+                        window.tutorialSystem = tutorialSystem;
+
+                        // --- 遊戲結束函數 ---
+                        function showGameOverModal(reason) {
+                            const modal = document.getElementById('game-over-modal');
+                            const titleEl = document.getElementById('game-over-title');
+                            const contentEl = document.getElementById('game-over-content');
+                            
+                            if (reason === 'monster') {
+                                titleEl.innerHTML = '😱 遊戲失敗 - 怪獸摧毀了城市！';
+                                contentEl.innerHTML = `
+                                    <div class="bg-rose-900/30 p-4 rounded-lg border-2 border-rose-500 mb-4">
+                                        <p class="text-rose-200 text-center">排放怪獸的怒氣值達到 100%，城市被摧毀了！</p>
+                                        <p class="text-rose-300 text-center mt-2">所有玩家都失敗了...</p>
+                                    </div>
+                                `;
+                            } else {
+                                // 正常結束，計算勝利條件
+                                const victoryResult = victorySystem.calculateVictory(gameState, carbonFeeSystem);
+                                titleEl.innerHTML = '🏆 遊戲結束';
+                                contentEl.innerHTML = victorySystem.generateVictoryReport(victoryResult);
+                                
+                                // 檢查並解鎖相關成就
+                                const playerResult = victoryResult.victoryResults['P'];
+                                if (playerResult && playerResult.victories.length > 0) {
+                                    playerResult.victories.forEach(victory => {
+                                        // 根據勝利條件解鎖對應成就
+                                        if (victory.id === 'carbon_pioneer') {
+                                            achievementSystem.unlockAchievement('low_emission');
+                                        }
+                                        if (victory.id === 'efficiency_master') {
+                                            achievementSystem.unlockAchievement('efficient_master');
+                                        }
+                                        if (victory.id === 'perfect_balance') {
+                                            achievementSystem.unlockAchievement('perfect_balance');
+                                        }
+                                    });
+                                }
+                            }
+                            
+                            modal.classList.remove('hidden');
+                        }
+
+                        function closeGameOverModal() {
+                            const modal = document.getElementById('game-over-modal');
+                            modal.classList.add('hidden');
+                        }
+
+                        function restartGame() {
+                            if (confirm('確定要重新開始遊戲嗎？當前進度將丟失。')) {
+                                location.reload();
+                            }
+                        }
+                    </script>
+</body>
+
+</html>
