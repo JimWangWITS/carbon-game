@@ -229,6 +229,27 @@
             transform-style: preserve-3d;
         }
 
+        /* 確保 footer 始終顯示 */
+        footer {
+            flex-shrink: 0 !important;
+            flex: none !important;
+            position: relative;
+            z-index: 40;
+        }
+
+        /* 確保 main 不會超出可用空間 */
+        main.city-3d-container {
+            min-height: 0;
+            max-height: 100%;
+            flex: 1 1 auto; /* 明確的 flex 設定 */
+        }
+
+        /* 確保中間容器不會隱藏 footer */
+        body > div.flex-1.flex {
+            min-height: 0;
+            overflow: visible;
+        }
+
         /* 城市網格 - 分區式設計 */
         #game-grid {
             display: grid;
@@ -544,14 +565,23 @@
                 margin: 0 !important; /* 改為左對齊，不要居中 */
             }
 
-            /* 確保父容器可以滾動，且網格位置更舒適 */
+            /* 確保 footer 在手機端也顯示 */
+            footer {
+                flex-shrink: 0 !important;
+                flex: none !important;
+                min-height: 5rem;
+            }
+
+            /* 確保 main 不會超出可用空間 */
             main.city-3d-container {
                 overflow-x: auto;
                 overflow-y: auto;
                 justify-content: flex-start !important; /* 保持左對齊 */
-                align-items: center !important; /* 改為垂直居中 */
-                padding-top: 3rem; /* 增加頂部間距，避免與 header 重疊 */
-                padding-bottom: 2rem; /* 增加底部間距，平衡視覺 */
+                align-items: flex-start !important; /* 改為頂部對齊，避免下方空白 */
+                padding-top: 4.5rem; /* 增加頂部間距，避免與 header 重疊 */
+                padding-bottom: 1rem; /* 減少底部間距 */
+                min-height: 0;
+                max-height: calc(100vh - 13rem); /* 更精確的計算：減去 header 和 footer 的實際高度 */
             }
 
             /* 手機端隱藏區域標記（因為空間較小） */
@@ -585,14 +615,24 @@
                 margin: 0 !important; /* 改為左對齊 */
             }
 
-            /* 確保父容器可以滾動 */
+            /* 確保 footer 在小螢幕也顯示 */
+            footer {
+                flex-shrink: 0 !important;
+                flex: none !important;
+                min-height: 4.5rem;
+            }
+
+            /* 確保父容器可以滾動，避免重疊和空白 */
             main.city-3d-container {
                 overflow-x: auto;
                 overflow-y: auto;
                 justify-content: flex-start !important;
-                align-items: center !important; /* 改為垂直居中 */
-                padding-top: 2.5rem; /* 增加頂部間距 */
-                padding-bottom: 1.5rem; /* 增加底部間距 */
+                align-items: flex-start !important; /* 改為頂部對齊，避免下方空白 */
+                padding-top: 5.5rem; /* 大幅增加頂部間距，確保不與 header 重疊 */
+                padding-bottom: 0.5rem; /* 減少底部間距，減少空白 */
+                min-height: 0;
+                /* 更精確的高度計算：100vh - header(約6rem) - footer(約4.5rem) - 緩衝(0.5rem) */
+                max-height: calc(100vh - 11rem);
             }
         }
 
@@ -1314,7 +1354,7 @@
     </div>
 
     <!-- FOOTER: 行動區 - 響應式 -->
-    <footer class="h-20 md:h-20 sm:h-auto sm:py-2 bg-slate-900 border-t border-slate-700 flex items-center justify-center gap-3 md:gap-6 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] overflow-x-auto">
+    <footer class="h-20 md:h-20 sm:h-auto sm:py-2 bg-slate-900 border-t border-slate-700 flex items-center justify-center gap-3 md:gap-6 z-40 shadow-[0_-5px_20px_rgba(0,0,0,0.5)] overflow-x-auto flex-shrink-0">
         <button onclick="openShop('domestic')" class="group relative px-3 md:px-6 py-1.5 md:py-2 bg-slate-800 hover:bg-emerald-900/30 text-emerald-400 rounded-xl border border-emerald-800 hover:border-emerald-500 transition-all transform hover:-translate-y-1 shrink-0">
             <div class="text-xs md:text-sm font-bold">🛒 國內交易</div>
             <div class="text-[9px] md:text-[10px] opacity-70 hidden sm:block">買賣許可證</div>
