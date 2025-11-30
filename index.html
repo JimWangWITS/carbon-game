@@ -544,13 +544,14 @@
                 margin: 0 !important; /* 改為左對齊，不要居中 */
             }
 
-            /* 確保父容器可以滾動，且網格從左邊開始 */
+            /* 確保父容器可以滾動，且網格位置更舒適 */
             main.city-3d-container {
                 overflow-x: auto;
                 overflow-y: auto;
-                justify-content: flex-start !important; /* 改為左對齊 */
-                align-items: flex-start !important; /* 改為頂部對齊 */
-                padding-top: 1rem; /* 添加一些頂部間距 */
+                justify-content: flex-start !important; /* 保持左對齊 */
+                align-items: center !important; /* 改為垂直居中 */
+                padding-top: 3rem; /* 增加頂部間距，避免與 header 重疊 */
+                padding-bottom: 2rem; /* 增加底部間距，平衡視覺 */
             }
 
             /* 手機端隱藏區域標記（因為空間較小） */
@@ -589,8 +590,9 @@
                 overflow-x: auto;
                 overflow-y: auto;
                 justify-content: flex-start !important;
-                align-items: flex-start !important;
-                padding-top: 0.5rem;
+                align-items: center !important; /* 改為垂直居中 */
+                padding-top: 2.5rem; /* 增加頂部間距 */
+                padding-bottom: 1.5rem; /* 增加底部間距 */
             }
         }
 
