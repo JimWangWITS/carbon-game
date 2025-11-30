@@ -233,8 +233,16 @@
         footer {
             flex-shrink: 0 !important;
             flex: none !important;
-            position: relative;
-            z-index: 40;
+            position: sticky !important; /* 使用 sticky 確保始終可見 */
+            bottom: 0 !important;
+            z-index: 50 !important; /* 提高 z-index 確保在最上層 */
+            width: 100%;
+        }
+
+        /* 處理移動瀏覽器的視窗高度問題 */
+        body {
+            min-height: 100vh;
+            min-height: -webkit-fill-available; /* Safari 和某些瀏覽器 */
         }
 
         /* 確保 main 不會超出可用空間 */
@@ -569,7 +577,13 @@
             footer {
                 flex-shrink: 0 !important;
                 flex: none !important;
+                position: sticky !important;
+                bottom: 0 !important;
+                z-index: 50 !important;
+                width: 100%;
                 min-height: 5rem;
+                /* 處理移動瀏覽器的安全區域 */
+                padding-bottom: env(safe-area-inset-bottom, 0);
             }
 
             /* 確保 main 不會超出可用空間 */
@@ -619,7 +633,13 @@
             footer {
                 flex-shrink: 0 !important;
                 flex: none !important;
+                position: sticky !important;
+                bottom: 0 !important;
+                z-index: 50 !important;
+                width: 100%;
                 min-height: 4.5rem;
+                /* 處理移動瀏覽器的安全區域 */
+                padding-bottom: env(safe-area-inset-bottom, 0);
             }
 
             /* 確保父容器可以滾動，避免重疊和空白 */
@@ -640,12 +660,19 @@
         #loading-screen {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+            z-index: 100 !important; /* 確保在 footer 之上 */
         }
 
         #loading-screen.hidden {
             opacity: 0;
             visibility: hidden;
             pointer-events: none;
+        }
+
+        /* Loading 畫面顯示時隱藏 footer 和 header */
+        body.loading footer,
+        body.loading header {
+            display: none !important;
         }
 
         .loading-content {
@@ -1776,12 +1803,17 @@
                                 
                                 setTimeout(() => {
                                     loadingScreen.classList.add('hidden');
+                                    // 移除 loading class，顯示 footer 和 header
+                                    document.body.classList.remove('loading');
                                 }, remaining);
                             });
                         }
 
                         // --- 初始化 ---
                         document.addEventListener('DOMContentLoaded', () => {
+                            // 在 loading 畫面顯示時，給 body 添加 loading class 以隱藏 footer
+                            document.body.classList.add('loading');
+                            
                             // 初始化 loading 圖片顯示
                             updateLoadingImage();
 
