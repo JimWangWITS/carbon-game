@@ -33,9 +33,6 @@
     
     <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="favicon.svg">
-    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="site.webmanifest">
     
     <!-- Google Analytics (可選) - 取消註解並替換 YOUR_GA_ID 以啟用 -->
@@ -567,10 +564,339 @@
                 padding: 8px;
             }
         }
+
+        /* ===== Loading 畫面響應式樣式（優化文字清晰度） ===== */
+        #loading-screen {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+        }
+
+        #loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+
+        .loading-content {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+
+        .loading-image-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+        }
+
+        .loading-image {
+            width: 100%;
+            max-width: 100vw;
+            height: auto;
+            object-fit: contain;
+            /* 保持圖片清晰度，特別是文字 */
+            image-rendering: -webkit-optimize-contrast;
+            image-rendering: crisp-edges;
+            image-rendering: high-quality;
+            /* 平滑縮放 */
+            image-rendering: auto;
+            /* 確保圖片不會超出視窗 */
+            max-height: 100vh;
+            /* 防止圖片模糊 */
+            -webkit-backface-visibility: hidden;
+            -moz-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transform: translateZ(0);
+        }
+
+        /* 根據方向顯示對應的圖片 */
+        .loading-image-portrait {
+            display: block;
+        }
+
+        .loading-image-landscape {
+            display: none;
+        }
+
+        @media (orientation: landscape) {
+            .loading-image-portrait {
+                display: none;
+            }
+
+            .loading-image-landscape {
+                display: block;
+            }
+        }
+
+        .loading-dots {
+            margin-top: 1.5rem;
+        }
+
+        .loading-dot {
+            width: 0.5rem;
+            height: 0.5rem;
+            background-color: rgb(34, 211, 238);
+            border-radius: 50%;
+            animation: pulse-glow 1.4s ease-in-out infinite;
+        }
+
+        @keyframes pulse-glow {
+            0%, 100% {
+                opacity: 1;
+                transform: scale(1);
+                box-shadow: 0 0 8px rgba(34, 211, 238, 0.8);
+            }
+            50% {
+                opacity: 0.5;
+                transform: scale(0.8);
+                box-shadow: 0 0 4px rgba(34, 211, 238, 0.4);
+            }
+        }
+
+        /* 直式手機優化（直式專用圖片完整顯示） */
+        @media (max-width: 768px) and (orientation: portrait) {
+            .loading-content {
+                padding: 1vh 0.5rem;
+                justify-content: center;
+            }
+
+            .loading-image-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-height: 0;
+                height: auto;
+                max-height: calc(100vh - 8vh); /* 保留空間給載入動畫 */
+            }
+
+            .loading-image {
+                /* 直式圖片：以寬度為準，完整顯示 */
+                width: 100%;
+                height: auto;
+                max-width: 100vw;
+                max-height: calc(100vh - 8vh);
+                object-fit: contain;
+                image-rendering: -webkit-optimize-contrast;
+            }
+
+            .loading-dots {
+                margin-top: 1vh;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        /* 手機端優化（橫向模式 - 橫向專用圖片） */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .loading-content {
+                padding: 0.25rem;
+                justify-content: center;
+            }
+
+            .loading-image-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-height: 0;
+                /* 最大化高度，填滿畫面 */
+                height: calc(100vh - 2vh);
+            }
+
+            .loading-image {
+                /* 橫向圖片：以高度為準，最大化填滿 */
+                width: auto;
+                height: 100%;
+                max-width: 100vw;
+                max-height: 100%;
+                object-fit: contain;
+                image-rendering: -webkit-optimize-contrast;
+            }
+
+            .loading-dots {
+                margin-top: 0.25vh;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        /* 小螢幕直式手機（小於 480px） */
+        @media (max-width: 480px) and (orientation: portrait) {
+            .loading-content {
+                padding: 0.75vh 0.25rem;
+            }
+
+            .loading-image-container {
+                flex: 1;
+                min-height: 0;
+                height: auto;
+                max-height: calc(100vh - 6vh);
+            }
+
+            .loading-image {
+                /* 小螢幕直式：以寬度為準，完整顯示 */
+                width: 100%;
+                height: auto;
+                max-width: 100vw;
+                max-height: calc(100vh - 6vh);
+                object-fit: contain;
+            }
+
+            .loading-dots {
+                margin-top: 0.75vh;
+                margin-bottom: 0;
+                flex-shrink: 0;
+            }
+        }
+
+        /* 小螢幕橫向模式 */
+        @media (max-width: 480px) and (orientation: landscape) {
+            .loading-content {
+                padding: 0.15rem;
+            }
+
+            .loading-image-container {
+                height: calc(100vh - 1.5vh);
+            }
+
+            .loading-image {
+                height: 100%;
+                max-height: 100%;
+                max-width: 100vw;
+            }
+
+            .loading-dots {
+                margin-top: 0.15vh;
+            }
+        }
+
+        /* 桌面端橫向模式優化 */
+        @media (min-width: 769px) and (orientation: landscape) {
+            .loading-content {
+                padding: 0.5rem;
+                justify-content: center;
+            }
+
+            .loading-image-container {
+                flex: 1;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width: 100%;
+                min-height: 0;
+                /* 最大化高度，填滿畫面 */
+                height: calc(100vh - 2vh);
+            }
+
+            .loading-image {
+                width: auto;
+                height: 100%;
+                max-width: 100vw;
+                max-height: 100%;
+                object-fit: contain;
+            }
+
+            .loading-dots {
+                margin-top: 0.5vh;
+            }
+        }
+
+        /* 低高度橫向模式（平板橫向等） */
+        @media (max-height: 600px) and (orientation: landscape) {
+            .loading-content {
+                padding: 0.25rem;
+            }
+
+            .loading-image-container {
+                height: calc(100vh - 1vh);
+            }
+
+            .loading-image {
+                height: 100%;
+                max-height: 100%;
+                max-width: 100vw;
+            }
+
+            .loading-dots {
+                margin-top: 0.25vh;
+            }
+        }
+
+        /* 高解析度螢幕優化（Retina 等） */
+        @media (-webkit-min-device-pixel-ratio: 2), 
+               (min-resolution: 192dpi) {
+            .loading-image {
+                /* 高解析度螢幕上保持清晰 */
+                image-rendering: -webkit-optimize-contrast;
+            }
+        }
+
+        /* 桌面端直式模式（桌面旋轉螢幕等） */
+        @media (min-width: 769px) and (orientation: portrait) {
+            .loading-content {
+                padding: 2rem;
+            }
+
+            .loading-image-container {
+                max-height: 90vh;
+            }
+
+            .loading-image {
+                max-width: 100vw;
+                max-height: 90vh;
+                object-fit: contain;
+            }
+        }
+
+        /* 超寬螢幕優化（橫向） */
+        @media (min-width: 1920px) and (orientation: landscape) {
+            .loading-image {
+                max-width: 1400px;
+                max-height: 90vh;
+            }
+        }
+
+        /* 超大螢幕（4K 橫向） */
+        @media (min-width: 2560px) and (orientation: landscape) {
+            .loading-image {
+                max-width: 1800px;
+                max-height: 90vh;
+            }
+        }
     </style>
 </head>
 
 <body class="bg-slate-900 text-slate-100 h-screen w-screen overflow-hidden flex flex-col select-none">
+
+    <!-- Loading 畫面 -->
+    <div id="loading-screen" class="fixed inset-0 z-50 bg-slate-900 flex items-center justify-center">
+        <div class="loading-content text-center px-4 w-full max-w-5xl mx-auto">
+            <div class="loading-image-container">
+                <img src="images/loadingPortrait.png" 
+                     alt="低碳霸主：怪獸保衛戰" 
+                     class="loading-image loading-image-portrait mx-auto"
+                     loading="eager">
+                <img src="images/loadingVertical.png" 
+                     alt="低碳霸主：怪獸保衛戰" 
+                     class="loading-image loading-image-landscape mx-auto"
+                     loading="eager">
+            </div>
+            <!-- 載入動畫指示器 -->
+            <div class="loading-dots flex justify-center items-center gap-2">
+                <div class="loading-dot"></div>
+                <div class="loading-dot" style="animation-delay: 0.2s;"></div>
+                <div class="loading-dot" style="animation-delay: 0.4s;"></div>
+            </div>
+        </div>
+    </div>
 
     <!-- GAME HEADER -->
     <header
@@ -1319,8 +1645,75 @@
             gameState.buildingsBuiltThisTurn = getCurrentBuildCount() + 1;
         }
 
+                        // --- Loading 畫面控制 ---
+                        // 根據方向切換圖片
+                        function updateLoadingImage() {
+                            const portraitImg = document.querySelector('.loading-image-portrait');
+                            const landscapeImg = document.querySelector('.loading-image-landscape');
+                            
+                            if (!portraitImg || !landscapeImg) return;
+
+                            // 使用 window.matchMedia 檢查方向
+                            const isLandscape = window.matchMedia('(orientation: landscape)').matches;
+                            
+                            if (isLandscape) {
+                                portraitImg.style.display = 'none';
+                                landscapeImg.style.display = 'block';
+                            } else {
+                                portraitImg.style.display = 'block';
+                                landscapeImg.style.display = 'none';
+                            }
+                        }
+
+                        // 監聽方向變化
+                        window.addEventListener('orientationchange', () => {
+                            // 延遲一下確保方向已改變
+                            setTimeout(updateLoadingImage, 100);
+                        });
+
+                        // 監聽視窗大小變化（處理某些瀏覽器的方向變化）
+                        window.addEventListener('resize', () => {
+                            updateLoadingImage();
+                        });
+
+                        function hideLoadingScreen() {
+                            const loadingScreen = document.getElementById('loading-screen');
+                            if (!loadingScreen) return;
+
+                            const loadingImage = loadingScreen.querySelector('.loading-image');
+                            const minDisplayTime = 2000; // 最小顯示時間：2 秒
+                            const startTime = Date.now();
+
+                            // 確保圖片載入完成
+                            const imageLoaded = loadingImage ? new Promise((resolve) => {
+                                if (loadingImage.complete) {
+                                    resolve();
+                                } else {
+                                    loadingImage.addEventListener('load', resolve, { once: true });
+                                    loadingImage.addEventListener('error', resolve, { once: true }); // 即使載入失敗也繼續
+                                }
+                            }) : Promise.resolve();
+
+                            // 等待圖片載入和最小顯示時間
+                            Promise.all([
+                                imageLoaded,
+                                new Promise(resolve => setTimeout(resolve, minDisplayTime))
+                            ]).then(() => {
+                                // 確保至少顯示了最小時間
+                                const elapsed = Date.now() - startTime;
+                                const remaining = Math.max(0, minDisplayTime - elapsed);
+                                
+                                setTimeout(() => {
+                                    loadingScreen.classList.add('hidden');
+                                }, remaining);
+                            });
+                        }
+
                         // --- 初始化 ---
                         document.addEventListener('DOMContentLoaded', () => {
+                            // 初始化 loading 圖片顯示
+                            updateLoadingImage();
+
                             // 初始化土地系統
                             landSystem.initializeLands(20, ['P', 'A', 'B', 'C']);
 
@@ -1368,6 +1761,9 @@
                                     }
                                 }, 1000);
                             }
+
+                            // 隱藏 loading 畫面（確保圖片載入完成且至少顯示一段時間）
+                            hideLoadingScreen();
                         });
 
                         // 設置事件監聽器
